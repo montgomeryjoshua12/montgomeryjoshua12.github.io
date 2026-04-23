@@ -11,9 +11,10 @@ profile:
   image_circular: false
   more_info: >
     <div class="profile-caption">
-      <div class="profile-affiliation">Boeing | Southern Methodist University</div>
+      <div class="profile-affiliation">Boeing | SMU</div>
       <div class="profile-location">Miami | Dallas</div>
     </div>
+social: true
 ---
 
 Josh is a United States Air Force veteran with a proven track record of excelling in fast-paced environments across the globe. Since leaving the military in 2021, he has worked in corporate finance in the downstream oil/gas and aviation industries.
