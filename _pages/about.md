@@ -3,7 +3,7 @@ layout: about
 title: about
 permalink: /
 subtitle: Data Analytics | Finance | Dashboards
-nav: true
+nav: false
 nav_order: 1
 profile:
   align: right
