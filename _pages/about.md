@@ -24,5 +24,3 @@ With a passion for data analysis and storytelling through automated dashboards, 
 Josh holds a BS in Social Psychology from Park University and an MBA from the University of Alaska. In January 2026 he began the MSDS program at SMU.
 
 He and his wife Kameron live in the DFW Metroplex. In their spare time they enjoy hiking, horseback riding, and live music.
-
-This site was built with GitHub Pages, Jekyll, and the al-folio theme. It will be used as a portfolio for data science coursework and analytics projects.
