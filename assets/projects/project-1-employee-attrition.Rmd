@@ -1,0 +1,1241 @@
+---
+title: "Case Study 1 v2"
+author: "Joshua Montgomery"
+date: "2026-03-14"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+#Load & Inspect Data
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(GGally)
+library(e1071)
+library(class)
+
+
+df <- read.csv(file.choose())
+
+
+str(df)
+head(df)
+
+
+
+
+```
+
+
+
+```{r}
+
+df$Attrition <- factor(df$Attrition,
+                       levels = c("No", "Yes"))
+
+df$OverTime <- factor(df$OverTime,
+                      levels = c("No", "Yes"))
+
+df$BusinessTravel <- factor(df$BusinessTravel,
+                            levels = c("Non-Travel",
+                                       "Travel_Rarely",
+                                       "Travel_Frequently"),
+                            ordered = TRUE)
+
+df$MaritalStatus <- factor(df$MaritalStatus,
+                           levels = c("Single",
+                                      "Married",
+                                      "Divorced"))
+
+df$Department <- factor(df$Department)
+
+df$JobRole <- factor(df$JobRole)
+
+df$EducationField <- factor(df$EducationField)
+
+df$Gender <- factor(df$Gender)
+
+
+df$EnvironmentSatisfaction <- factor(df$EnvironmentSatisfaction,
+                                     levels = c(1, 2, 3, 4),
+                                     ordered = TRUE)
+
+df$JobInvolvement <- factor(df$JobInvolvement,
+                            levels = c(1, 2, 3, 4),
+                            ordered = TRUE)
+
+df$JobLevel <- factor(df$JobLevel,
+                      levels = c(1, 2, 3, 4, 5),
+                      ordered = TRUE)
+
+df$JobSatisfaction <- factor(df$JobSatisfaction,
+                             levels = c(1, 2, 3, 4),
+                             ordered = TRUE)
+
+df$RelationshipSatisfaction <- factor(df$RelationshipSatisfaction,
+                                      levels = c(1, 2, 3, 4),
+                                      ordered = TRUE)
+
+df$WorkLifeBalance <- factor(df$WorkLifeBalance,
+                             levels = c(1, 2, 3, 4),
+                             ordered = TRUE)
+
+# Replace NA in StockOptionLevel with 0, then order levels
+df$StockOptionLevel[is.na(df$StockOptionLevel)] <- 0
+df$StockOptionLevel <- factor(df$StockOptionLevel,
+                              levels = c(0, 1, 2, 3),
+                              ordered = TRUE)
+
+str(df)
+summary(df)
+
+
+
+```
+```{r}
+# Copy for plots and summaries
+df_plot <- df
+
+# Copy for models that may need numeric conversion
+df_model <- df
+```
+```{r}
+df %>%
+  ggplot(aes(x = Attrition)) +
+  geom_bar() +
+  geom_text(stat = "count",
+            aes(label = after_stat(count)),
+            vjust = -0.5) +
+  labs(title = "Attrition Count",
+       x = "Attrition",
+       y = "Count") +
+  theme_minimal()
+
+attrition_totals <- df %>%
+  count(Attrition) %>%
+  mutate(percent = n / sum(n) * 100)
+
+ggplot(attrition_totals, aes(x = Attrition, y = percent, fill = Attrition)) +
+  geom_col() +
+  geom_text(aes(label = paste0(round(percent, 1), "%")),
+            vjust = -0.5, size = 4) +
+  labs(title = "Total Attrition",
+       x = "Employee Attrition",
+       y = "Attrition %") +
+  theme_minimal()
+```
+```{r}
+#Overtime
+
+overtime_attrition <- df %>%
+  group_by(OverTime) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100)
+
+overtime_attrition %>%
+  ggplot(aes(x = OverTime, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")),
+            vjust = -0.5) +
+  labs(title = "Attrition Percent by OverTime",
+       x = "OverTime",
+       y = "Attrition Percent") +
+  theme_minimal()
+
+#Marital Status
+
+marital_attrition <- df %>%
+  group_by(MaritalStatus) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100)
+
+marital_attrition %>%
+  ggplot(aes(x = MaritalStatus, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")),
+            vjust = -0.5) +
+  labs(title = "Attrition Percent by Marital Status",
+       x = "Marital Status",
+       y = "Attrition Percent") +
+  theme_minimal()
+
+
+businesstravel_attrition <- df %>%
+  group_by(BusinessTravel) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100)
+
+businesstravel_attrition %>%
+  ggplot(aes(x = BusinessTravel, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")),
+            vjust = -0.5) +
+  labs(title = "Attrition Percent by Business Travel",
+       x = "Business Travel",
+       y = "Attrition Percent") +
+  theme_minimal()
+
+department_attrition <- df %>%
+  group_by(Department) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100)
+
+department_attrition %>%
+  ggplot(aes(x = Department, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")),
+            vjust = -0.5) +
+  labs(title = "Attrition Percent by Department",
+       x = "Department",
+       y = "Attrition Percent") +
+  theme_minimal()
+
+
+joblevel_attrition <- df %>%
+  group_by(JobLevel) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100)
+
+joblevel_attrition %>%
+  ggplot(aes(x = JobLevel, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")),
+            vjust = -0.5) +
+  labs(title = "Attrition Percent by Job Level",
+       x = "Job Level",
+       y = "Attrition Percent") +
+  theme_minimal()
+
+
+stock_attrition <- df %>%
+  group_by(StockOptionLevel) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100)
+
+stock_attrition %>%
+  ggplot(aes(x = StockOptionLevel, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")),
+            vjust = -0.5) +
+  labs(title = "Attrition Percent by Stock Option Level",
+       x = "Stock Option Level",
+       y = "Attrition Percent") +
+  theme_minimal()
+
+education_attrition <- df %>%
+  group_by(Education) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100)
+
+education_attrition %>%
+  ggplot(aes(x = Education, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")),
+            vjust = -0.5) +
+  labs(title = "Attrition Percent by Education",
+       x = "Education",
+       y = "Attrition Percent") +
+  theme_minimal()
+
+
+educationfield_attrition <- df %>%
+  group_by(EducationField) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100)
+
+educationfield_attrition %>%
+  ggplot(aes(x = EducationField, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")),
+            vjust = -0.5) +
+  labs(title = "Attrition Percent by Education Field",
+       x = "Education Field",
+       y = "Attrition Percent") +
+  theme_minimal()
+```
+
+
+
+
+```{r}
+
+# CATEGORICAL / ORDINAL VARIABLES
+
+
+# OverTime
+df %>%
+  group_by(OverTime) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = OverTime, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by OverTime") +
+  theme_minimal()
+
+# MaritalStatus
+df %>%
+  group_by(MaritalStatus) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = MaritalStatus, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Marital Status") +
+  theme_minimal()
+
+# BusinessTravel
+df %>%
+  group_by(BusinessTravel) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = BusinessTravel, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Business Travel") +
+  theme_minimal()
+
+# Department
+df %>%
+  group_by(Department) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = Department, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Department") +
+  theme_minimal()
+
+# EducationField
+df %>%
+  group_by(EducationField) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = EducationField, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Education Field") +
+  theme_minimal()
+
+# Gender
+df %>%
+  group_by(Gender) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = Gender, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Gender") +
+  theme_minimal()
+
+# JobRole
+df %>%
+  group_by(JobRole) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = JobRole, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Job Role") +
+  theme_minimal()
+
+# JobLevel
+df %>%
+  group_by(JobLevel) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = JobLevel, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Job Level") +
+  theme_minimal()
+
+# StockOptionLevel
+df %>%
+  group_by(StockOptionLevel) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = StockOptionLevel, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Stock Option Level") +
+  theme_minimal()
+
+# EnvironmentSatisfaction
+df %>%
+  group_by(EnvironmentSatisfaction) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = EnvironmentSatisfaction, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Environment Satisfaction") +
+  theme_minimal()
+
+# JobSatisfaction
+df %>%
+  group_by(JobSatisfaction) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = JobSatisfaction, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Job Satisfaction") +
+  theme_minimal()
+
+# WorkLifeBalance
+df %>%
+  group_by(WorkLifeBalance) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = WorkLifeBalance, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Work Life Balance") +
+  theme_minimal()
+
+# Job Involvement
+df %>%
+  group_by(JobInvolvement) %>%
+  summarise(attrition_percent = mean(Attrition == "Yes") * 100) %>%
+  ggplot(aes(x = JobInvolvement, y = attrition_percent)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(attrition_percent,1), "%")), vjust = -0.5) +
+  labs(title = "Attrition Percent by Work Life Balance") +
+  theme_minimal()
+```
+
+```{r}
+
+# CONTINUOUS VARIABLES
+
+
+ggplot(df, aes(x = Age, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Age Distribution by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = DailyRate, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Daily Rate by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = DistanceFromHome, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Distance From Home by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = HourlyRate, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Hourly Rate by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = MonthlyIncome, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Monthly Income by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = MonthlyRate, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Monthly Rate by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = NumCompaniesWorked, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Number of Companies Worked by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = PercentSalaryHike, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Percent Salary Hike by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = TotalWorkingYears, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Total Working Years by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = TrainingTimesLastYear, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Training Times Last Year by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = YearsAtCompany, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Years at Company by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = YearsInCurrentRole, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Years in Current Role by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = YearsSinceLastPromotion, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Years Since Last Promotion by Attrition") +
+  theme_minimal()
+
+ggplot(df, aes(x = YearsWithCurrManager, fill = Attrition)) +
+  geom_density(alpha = 0.4) +
+  labs(title = "Years With Current Manager by Attrition") +
+  theme_minimal()
+```
+
+
+
+```{r}
+attrition_summary <- df %>%
+  select(
+    Attrition,
+    BusinessTravel,
+    Department,
+    Education,
+    EducationField,
+    EnvironmentSatisfaction,
+    Gender,
+    JobInvolvement,
+    JobLevel,
+    JobRole,
+    JobSatisfaction,
+    MaritalStatus,
+    OverTime,
+    PerformanceRating,
+    RelationshipSatisfaction,
+    StockOptionLevel,
+    WorkLifeBalance
+  ) %>%
+  mutate(across(-Attrition, as.character)) %>%
+  pivot_longer(
+    cols = -Attrition,
+    names_to = "Variable",
+    values_to = "Level"
+  ) %>%
+  group_by(Variable, Level) %>%
+  summarise(
+    count = n(),
+    attrition_percent = mean(Attrition == "Yes") * 100,
+    .groups = "drop"
+  ) %>%
+  arrange(desc(attrition_percent))
+
+attrition_summary
+```
+
+
+
+
+
+
+```{r}
+spread_table <- attrition_summary %>%
+  group_by(Variable) %>%
+  summarise(
+    max_attrition = max(attrition_percent),
+    min_attrition = min(attrition_percent),
+    spread = max_attrition - min_attrition
+  ) %>%
+  arrange(desc(spread))
+
+spread_table
+
+spread_table %>%
+  ggplot(aes(x = reorder(Variable, spread), y = spread)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(
+    title = "Attrition Spread by Variable",
+    x = "Variable",
+    y = "Attrition % Spread"
+  )
+```
+#Variables were selected based on the EDA showing the largest differences in attrition rates across all levels within varibaled. 
+
+
+#Top predictors of attrition
+#OverTime
+#JobLevel
+#StockOptionLevel
+
+#we selected
+```{r}
+F <- df[,c(
+  "Attrition",
+  "OverTime",
+  "JobLevel",
+  "StockOptionLevel",
+  "WorkLifeBalance",
+  "JobInvolvement"
+)]
+```
+#Train/Test split 
+```{r}
+set.seed(1)
+
+train_index <- sample(1:nrow(F), 0.7*nrow(F))
+
+train <- F[train_index,]
+test <- F[-train_index,]
+```
+#Manual Oversampling
+
+#Because only 16% of employees left the company, the dataset was highly imbalanced. Manual oversampling was applied to the training data to balance attrition and non-attrition observations so the models would not predict non-attrition.
+
+```{r}
+yes <- train[train$Attrition=="Yes",]
+no <- train[train$Attrition=="No",]
+
+yes_over <- yes[sample(1:nrow(yes), nrow(no), replace = TRUE),]
+
+train_over <- rbind(no, yes_over)
+```
+#Fit NB Model
+
+```{r}
+library(e1071)
+
+model_nb <- naiveBayes(
+  Attrition ~ OverTime + JobLevel + StockOptionLevel +
+  WorkLifeBalance + JobInvolvement,
+  data = train_over
+)
+
+
+pred_prob <- predict(
+  model_nb,
+  test[,c(
+    "OverTime",
+    "JobLevel",
+    "StockOptionLevel",
+    "WorkLifeBalance",
+    "JobInvolvement"
+  )],
+  type = "raw"
+)
+
+prob_yes <- pred_prob[,"Yes"]
+
+
+threshold <- 0.3
+
+pred_class_nb <- ifelse(prob_yes > threshold,"Yes","No")
+
+
+library(caret)
+
+cm_nb <- confusionMatrix(
+  factor(pred_class_nb),
+  factor(test$Attrition),
+  positive = "Yes"
+)
+
+cm_nb
+
+
+accuracy_nb <- as.numeric(cm_nb$overall["Accuracy"])
+sensitivity_nb <- as.numeric(cm_nb$byClass["Sensitivity"])
+specificity_nb <- as.numeric(cm_nb$byClass["Specificity"])
+
+accuracy_nb
+sensitivity_nb
+specificity_nb
+
+```
+
+
+
+#NB results Visual
+```{r}
+metrics <- data.frame(
+  Model = rep("Naive Bayes", 3),
+  Metric = c("Accuracy","Sensitivity","Specificity"),
+  Value = c(
+    accuracy_nb,
+    sensitivity_nb,
+    specificity_nb
+  )
+)
+
+metrics$Metric <- factor(
+  metrics$Metric,
+  levels = c("Accuracy","Sensitivity","Specificity")
+)
+
+library(ggplot2)
+
+metrics %>%
+  ggplot(aes(x = Metric, y = Value, group = Model, color = Model)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 3) +
+  geom_text(aes(label = round(Value,2)), vjust = -0.8, size = 4) +
+  geom_hline(yintercept = 0.60, linetype = "dotted", size = 1) +
+  annotate("text", x = 2.8, y = 0.62, label = "60% Benchmark", size = 4) +
+  labs(
+    title = "Naive Bayes Model Performance",
+    x = "Metric",
+    y = "Score"
+  ) +
+  ylim(0,1)
+```
+
+#Fit KNN Model
+
+```{r}
+train_over$OverTimeNum <- ifelse(train_over$OverTime=="Yes",1,0)
+test$OverTimeNum <- ifelse(test$OverTime=="Yes",1,0)
+```
+#Convert ordinal factros
+
+```{r}
+train_over$JobLevel <- as.numeric(as.character(train_over$JobLevel))
+test$JobLevel <- as.numeric(as.character(test$JobLevel))
+
+train_over$StockOptionLevel <- as.numeric(as.character(train_over$StockOptionLevel))
+test$StockOptionLevel <- as.numeric(as.character(test$StockOptionLevel))
+
+train_over$WorkLifeBalance <- as.numeric(as.character(train_over$WorkLifeBalance))
+test$WorkLifeBalance <- as.numeric(as.character(test$WorkLifeBalance))
+
+train_over$JobInvolvement <- as.numeric(as.character(train_over$JobInvolvement))
+test$JobInvolvement <- as.numeric(as.character(test$JobInvolvement))
+```
+
+```{r}
+scale_cols <- c(
+  "OverTimeNum",
+  "JobLevel",
+  "StockOptionLevel",
+  "WorkLifeBalance",
+  "JobInvolvement"
+)
+
+train_scaled <- scale(train_over[,scale_cols])
+test_scaled <- scale(test[,scale_cols])
+
+
+```
+```{r}
+nrow(train_over)
+sqrt(nrow(train_over))
+```
+
+
+```{r}
+
+classifications <- knn(
+  train_scaled,
+  test_scaled,
+  train_over$Attrition,
+  k = 32
+  
+)
+
+cm_knn <- confusionMatrix(classifications,test$Attrition,positive="Yes")
+
+cm_knn
+
+accuracy_knn <- as.numeric(cm_knn$overall["Accuracy"])
+sensitivity_knn <- as.numeric(cm_knn$byClass["Sensitivity"])
+specificity_knn <- as.numeric(cm_knn$byClass["Specificity"])
+
+accuracy_knn
+sensitivity_knn
+specificity_knn
+```
+
+```{r}
+metrics_knn <- data.frame(
+  Model = rep("KNN", 3),
+  Metric = c("Accuracy","Sensitivity","Specificity"),
+  Value = c(
+    accuracy_knn,
+    sensitivity_knn,
+    specificity_knn
+  )
+)
+
+metrics_knn$Metric <- factor(
+  metrics_knn$Metric,
+  levels = c("Accuracy","Sensitivity","Specificity")
+)
+
+library(ggplot2)
+
+metrics_knn %>%
+  ggplot(aes(x = Metric, y = Value, group = Model, color = Model)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 3) +
+  geom_text(aes(label = round(Value,2)), vjust = -0.8, size = 4) +
+  geom_hline(yintercept = 0.60, linetype = "dotted", size = 1) +
+  annotate("text", x = 2.8, y = 0.62, label = "60% Benchmark", size = 4) +
+  labs(
+    title = "KNN Model Performance",
+    x = "Metric",
+    y = "Score"
+  ) +
+  ylim(0,1)
+```
+
+
+```{r}
+metrics <- data.frame(
+  Model = rep(c("Naive Bayes","KNN"), each = 3),
+  Metric = rep(c("Accuracy","Sensitivity","Specificity"), 2),
+  Value = c(
+    accuracy_nb,
+    sensitivity_nb,
+    specificity_nb,
+    accuracy_knn,
+    sensitivity_knn,
+    specificity_knn
+  )
+)
+
+metrics$Metric <- factor(
+  metrics$Metric,
+  levels = c("Accuracy","Sensitivity","Specificity")
+)
+
+
+library(ggplot2)
+
+metrics %>%
+  ggplot(aes(x = Metric, y = Value, group = Model, color = Model)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 3) +
+  geom_text(aes(label = round(Value,2)), vjust = -0.8, size = 4) +
+  geom_hline(yintercept = 0.60, linetype = "dotted", size = 1) +
+  annotate("text", x = 2.8, y = 0.62, label = "60% Benchmark", size = 4) +
+  labs(
+    title = "Pre Tuned Naive Bayes vs KNN Model Performance",
+    x = "Metric",
+    y = "Score"
+  ) +
+  ylim(0,1)
+```
+
+#The plot shows the KNN cleary out performing the NB model across all categories.  It is important to note that the both models have not yet been tuned.  Next we will determine the appropriate threshold to tune the NB model to and the appropriate k to inlcude in the knn.  This will ensure we select the best model to fit the client's needs.  
+
+
+```{r}
+
+threshold_values <- seq(0.10, 0.50, by = 0.01)
+
+accuracy_nb_vec <- c()
+sensitivity_nb_vec <- c()
+specificity_nb_vec <- c()
+
+for(th in threshold_values){
+
+  pred_class_nb <- ifelse(prob_yes > th, "Yes", "No")
+  pred_class_nb <- factor(pred_class_nb, levels = c("No","Yes"))
+
+  cm <- confusionMatrix(
+    pred_class_nb,
+    factor(test$Attrition, levels = c("No","Yes")),
+    positive = "Yes"
+  )
+
+  accuracy_nb_vec <- c(accuracy_nb_vec, as.numeric(cm$overall["Accuracy"]))
+  sensitivity_nb_vec <- c(sensitivity_nb_vec, as.numeric(cm$byClass["Sensitivity"]))
+  specificity_nb_vec <- c(specificity_nb_vec, as.numeric(cm$byClass["Specificity"]))
+}
+
+
+nb_results <- data.frame(
+  Threshold = threshold_values,
+  Accuracy = accuracy_nb_vec,
+  Sensitivity = sensitivity_nb_vec,
+  Specificity = specificity_nb_vec
+)
+
+nb_long <- nb_results %>%
+  pivot_longer(
+    cols = c(Accuracy, Sensitivity, Specificity),
+    names_to = "Metric",
+    values_to = "Value"
+  )
+
+
+nb_long %>%
+  ggplot(aes(x = Threshold, y = Value, color = Metric)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  geom_hline(yintercept = 0.60, linetype = "dotted") +
+  labs(
+    title = "Naive Bayes Performance Across Different Threshold Values",
+    x = "Threshold",
+    y = "Score"
+  ) +
+  ylim(0,1)
+```
+#Based on the plot, we note that a threshold of ~.50 yeilds favorable results, consistent with the client's requirments.  
+
+
+
+
+
+#Find best K for KNN
+```{r}
+train_over$JobLevel <- as.numeric(as.character(train_over$JobLevel))
+test$JobLevel <- as.numeric(as.character(test$JobLevel))
+
+train_over$StockOptionLevel <- as.numeric(as.character(train_over$StockOptionLevel))
+test$StockOptionLevel <- as.numeric(as.character(test$StockOptionLevel))
+
+train_over$WorkLifeBalance <- as.numeric(as.character(train_over$WorkLifeBalance))
+test$WorkLifeBalance <- as.numeric(as.character(test$WorkLifeBalance))
+
+train_over$JobInvolvement <- as.numeric(as.character(train_over$JobInvolvement))
+test$JobInvolvement <- as.numeric(as.character(test$JobInvolvement))
+```
+
+```{r}
+scale_cols <- c(
+  "OverTimeNum",
+  "JobLevel",
+  "StockOptionLevel",
+  "WorkLifeBalance",
+  "JobInvolvement"
+)
+
+train_scaled <- scale(train_over[,scale_cols])
+test_scaled <- scale(test[,scale_cols])
+```
+
+```{r}
+k_values <- seq(3,31,2)
+
+accuracy <- c()
+sensitivity <- c()
+specificity <- c()
+
+for(k in k_values){
+
+  pred <- knn(
+    train_scaled,
+    test_scaled,
+    train_over$Attrition,
+    k = k
+  )
+
+  cm <- confusionMatrix(pred, test$Attrition, positive="Yes")
+
+  accuracy <- c(accuracy, as.numeric(cm$overall["Accuracy"]))
+  sensitivity <- c(sensitivity, as.numeric(cm$byClass["Sensitivity"]))
+  specificity <- c(specificity, as.numeric(cm$byClass["Specificity"]))
+}
+
+knn_results <- data.frame(
+  k = k_values,
+  Accuracy = accuracy,
+  Sensitivity = sensitivity,
+  Specificity = specificity
+)
+
+library(tidyr)
+
+knn_long <- knn_results %>%
+  pivot_longer(
+    cols = c(Accuracy, Sensitivity, Specificity),
+    names_to = "Metric",
+    values_to = "Value"
+  )
+
+library(ggplot2)
+
+knn_long %>%
+  ggplot(aes(x = k, y = Value, color = Metric)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  geom_vline(xintercept = best_k, linetype = "dashed") +
+  geom_hline(yintercept = 0.60, linetype = "dotted") +
+  labs(
+    title = "KNN Performance",
+    x = "k Value",
+    y = "Score"
+  ) +
+  ylim(0,1)
+```
+
+
+#We note a k value of ~27 may be the best fit
+```{r}
+best_k <- k_values[which.max(accuracy)]
+
+best_k
+
+classifications <- knn(
+  train_scaled,
+  test_scaled,
+  train_over$Attrition,
+  k = 27
+)
+
+cm_knn <- confusionMatrix(classifications,test$Attrition,positive="Yes")
+
+cm_knn
+
+accuracy_knn_tuned <- as.numeric(cm_knn$overall["Accuracy"])
+sensitivity_knn_tuned <- as.numeric(cm_knn$byClass["Sensitivity"])
+specificity_knn_tuned <- as.numeric(cm_knn$byClass["Specificity"])
+
+accuracy_knn_tuned
+sensitivity_knn_tuned
+specificity_knn_tuned
+```
+
+#Based on the plot, we note that a k value of ~27 yeilds favorable results, consistent with the client's requirments.  
+
+
+```{r}
+library(e1071)
+
+model_nb_tuned <- naiveBayes(
+  Attrition ~ OverTime + JobLevel + StockOptionLevel +
+  WorkLifeBalance + JobInvolvement,
+  data = train_over
+)
+
+
+pred_prob <- predict(
+  model_nb_tuned,
+  test[,c(
+    "OverTime",
+    "JobLevel",
+    "StockOptionLevel",
+    "WorkLifeBalance",
+    "JobInvolvement"
+  )],
+  type = "raw"
+)
+
+prob_yes <- pred_prob[,"Yes"]
+
+
+threshold <- 0.5
+
+pred_class_nb <- ifelse(prob_yes > threshold,"Yes","No")
+
+
+library(caret)
+
+cm_nb <- confusionMatrix(
+  factor(pred_class_nb),
+  factor(test$Attrition),
+  positive = "Yes"
+)
+
+cm_nb
+
+
+accuracy_nb_tuned <- as.numeric(cm_nb$overall["Accuracy"])
+sensitivity_nb_tuned <- as.numeric(cm_nb$byClass["Sensitivity"])
+specificity_nb_tuned <- as.numeric(cm_nb$byClass["Specificity"])
+
+accuracy_nb_tuned
+sensitivity_nb_tuned
+specificity_nb_tuned
+```
+#After tuning th NB model to a threshold = 0.5, we note very different results - all categories meet established threshold of 60%
+#The tuned Naive Bayes model satisfies the client requirement of sensitivity and specificity greater than 60%.
+
+```{r}
+metrics <- data.frame(
+  Model = rep(c("Naive Bayes","KNN"), each = 3),
+  Metric = rep(c("Accuracy","Sensitivity","Specificity"), 2),
+  Value = c(
+    accuracy_nb_tuned,
+    sensitivity_nb_tuned,
+    specificity_nb_tuned,
+    accuracy_knn_tuned,
+    sensitivity_knn_tuned,
+    specificity_knn_tuned
+  )
+)
+
+metrics$Metric <- factor(
+  metrics$Metric,
+  levels = c("Accuracy","Sensitivity","Specificity")
+)
+
+
+library(ggplot2)
+
+metrics %>%
+  ggplot(aes(x = Metric, y = Value, group = Model, color = Model)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 3) +
+  geom_text(aes(label = round(Value,2)), vjust = -0.8, size = 4) +
+  geom_hline(yintercept = 0.60, linetype = "dotted", size = 1) +
+  annotate("text", x = 2.8, y = 0.62, label = "60% Benchmark", size = 4) +
+  labs(
+    title = "Tuned Naive Bayes (Threshold = 0.5) vs KNN Model Performance (k = 27)",
+    x = "Metric",
+    y = "Score"
+  ) +
+  ylim(0,1)
+```
+#Visually, we note that, after tuning the NB model, the NB is outperforming KNN.  Therefore, we shall move forward with an analysis of the NB Model's results.  
+
+
+#plot confusion matrix for tuned NB
+
+```{r}
+cm_table$Prediction <- factor(cm_table$Prediction, levels = c("No","Yes"))
+cm_table$Reference <- factor(cm_table$Reference, levels = c("No","Yes"))
+
+
+cm_table <- as.data.frame(cm_nb$table)
+cm_table
+
+
+cm_table$Prediction <- factor(cm_table$Prediction, levels = c("Yes","No"))
+
+
+cm_table %>%
+  ggplot(aes(x = Reference, y = Prediction, fill = Freq)) +
+  geom_tile() +
+  geom_text(aes(label = Freq), size = 6) +
+  labs(
+    title = "Naive Bayes Confusion Matrix - Employee Attrition",
+    x = "Actual Attrition",
+    y = "Predicted Attrition"
+  ) +
+  scale_fill_gradient(low = "white", high = "steelblue")
+```
+#TN = 157 - Correct non- attrition predictions
+#FN = 9 - Employees predicted not to leave, but did
+#FP = 63 - Predicted to leave, but stayed
+#TP = 32 - Predicted to leave and actually left 
+
+
+#Manual Calc based on confusion matrix
+
+```{r}
+TN <- 157
+FN <- 9
+FP <- 63
+TP <- 32
+
+accuracy <- (TP + TN) / (TP + TN + FP + FN)
+accuracy
+
+sensitivity <- TP / (TP + FN)
+sensitivity
+
+specificity <- TN / (TN + FP)
+specificity
+```
+
+#Based on the confusion matrix, the tuned NB model achieved an accuracy of 72.4%.  This mean that it correctly classified  72% of employees. The sensitivity of 78.0% indicates the model correctly identified 78% of employees who actually left the company, while the specificity of 71.4% notes that the model correctly called out 71% of employees who stayed.
+
+```{r}
+TN <- 157
+cost_TN <- 0
+```
+
+
+#Predicted leave, actually stayed. These employees would get an unnecessary retention incentive worth $200.
+```{r}
+FP <- 63
+cost_per_FP <- 200
+total_FP_cost <- FP * cost_per_FP
+total_FP_cost
+```
+
+#Predicted stay, actually left.
+These are the most expensive mistakes because the company does not intervene and then must replace the employee. The replacement cost is between 50% and 400% of salary.
+
+```{r}
+FN <- 9
+Salary <- 75000
+
+
+FN_cost_50  <- FN * 0.50 * Salary
+FN_cost_100 <- FN * 1.00 * Salary
+FN_cost_200 <- FN * 2.00 * Salary
+FN_cost_400 <- FN * 4.00 * Salary
+
+FN_cost_50
+FN_cost_100
+FN_cost_200
+FN_cost_400
+
+
+```
+#TP - Predicted to leave and then left.  Assume cost of intervention ($200) + cost of atrrition
+
+
+```{r}
+TP <- 32
+cost_per_TP <- 200
+total_TP_cost <- TP * cost_per_TP
+total_TP_cost
+```
+
+```{r}
+TP_cost_50  <- TP * (200 + 0.50 * Salary)
+TP_cost_100 <- TP * (200 + 1.00 * Salary)
+TP_cost_200 <- TP * (200 + 2.00 * Salary)
+TP_cost_400 <- TP * (200 + 4.00 * Salary)
+
+TP_cost_50 
+TP_cost_100 
+TP_cost_200 
+TP_cost_400 
+```
+
+
+#Validation
+
+```{r}
+validation <- read.csv(file.choose())
+
+validation$OverTime <- factor(validation$OverTime, levels = c("No", "Yes"))
+
+validation$JobLevel <- factor(validation$JobLevel,
+                              levels = c(1, 2, 3, 4, 5),
+                              ordered = TRUE)
+
+validation$StockOptionLevel[is.na(validation$StockOptionLevel)] <- 0
+validation$StockOptionLevel <- factor(validation$StockOptionLevel,
+                                      levels = c(0, 1, 2, 3),
+                                      ordered = TRUE)
+
+validation$MaritalStatus <- factor(validation$MaritalStatus,
+                                   levels = c("Single", "Married", "Divorced"))
+
+pred_prob <- predict(
+  model,
+  validation[, c("OverTime", "JobLevel", "StockOptionLevel", "MaritalStatus")],
+  type = "raw"
+)
+
+prob_yes <- pred_prob[, "Yes"]
+
+validation_pred <- ifelse(prob_yes > 0.5, "Yes", "No")
+validation_pred <- factor(validation_pred, levels = c("No", "Yes"))
+
+table(validation_pred)
+
+pred_table <- data.frame(
+  Class = names(table(validation_pred)),
+  Count = as.numeric(table(validation_pred)),
+  Percent = round(prop.table(table(validation_pred)) * 100, 1)
+)
+
+pred_table
+
+length(validation_pred)
+nrow(validation)
+
+submission <- data.frame(
+  ID = validation$ID,
+  Attrition = validation_pred
+)
+
+submission <- submission[order(submission$ID), ]
+
+
+write.csv(
+  submission,
+  "~/Desktop/Case1PredictionsMontgomery_Attrition.csv",
+  row.names = FALSE
+)
+```
+
+
+
+
+
+
+
+
