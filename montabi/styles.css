@@ -109,6 +109,9 @@ img {
 .nav-links .active-nav {
   color: var(--rust);
 }
+.nav > .active-nav {
+  color: var(--rust);
+}
 .nav-cta {
   padding: 12px 18px;
   border: 1px solid var(--amber);
@@ -470,6 +473,79 @@ footer {
   min-height: 100svh;
   padding-bottom: 54px;
   background: var(--cream);
+}
+
+.home-page .intro-section,
+.home-page #services,
+.home-page #approach,
+.home-page #about,
+.home-page #contact {
+  display: none;
+}
+
+.content-page {
+  min-height: 100vh;
+  background: var(--cream);
+}
+
+.page-nav {
+  border-bottom: 1px solid var(--line);
+}
+
+.page-hero {
+  padding-top: clamp(80px, 10vw, 150px);
+  padding-bottom: clamp(60px, 8vw, 110px);
+}
+
+.page-hero h1 {
+  max-width: 900px;
+  margin: 18px 0 20px;
+  color: var(--forest-950);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.3rem, 7.5vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.93;
+}
+
+.page-hero > p:last-child {
+  max-width: 680px;
+  color: var(--forest-700);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.1rem, 2vw, 1.75rem);
+  line-height: 1.45;
+}
+
+.page-section {
+  padding-top: clamp(70px, 8vw, 120px);
+}
+
+.content-page .services.page-section {
+  background: #eee8da;
+}
+
+.content-page .approach.page-section,
+.content-page .about.page-section {
+  min-height: 600px;
+}
+
+.contact-page {
+  position: relative;
+  min-height: calc(100vh - 150px);
+  display: flex;
+  align-items: center;
+  color: var(--cream);
+  background: var(--forest-950);
+}
+
+.contact-page h1 {
+  max-width: 900px;
+  margin: 16px 0 24px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.3rem, 7vw, 6.5rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
 }
 .demo-nav {
   color: var(--forest-950);
