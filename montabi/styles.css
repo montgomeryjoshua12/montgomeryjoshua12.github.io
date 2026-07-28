@@ -213,14 +213,43 @@ h1 em {
 .brand-panel {
   position: relative;
 }
-.brand-panel > img {
-  width: 100%;
-  border: 0;
-  box-shadow: none;
-  transition: transform 0.2s ease-out;
+.dashboard-preview-link {
+  position: relative;
+  display: block;
+  padding: 8px;
+  overflow: hidden;
+  background: var(--forest-950);
+  box-shadow: 0 26px 70px rgba(7, 31, 24, 0.22);
+  transform: rotate(1.2deg);
+  transition:
+    transform 0.25s ease-out,
+    box-shadow 0.25s ease-out;
 }
-.brand-panel:hover > img {
-  transform: scale(1.018);
+.dashboard-preview-link img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: left top;
+  border: 0;
+}
+.dashboard-preview-link span {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 9px 12px;
+  color: var(--forest-950);
+  background: var(--amber);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.dashboard-preview-link span b {
+  margin-left: 8px;
+}
+.dashboard-preview-link:hover {
+  box-shadow: 0 34px 85px rgba(7, 31, 24, 0.3);
+  transform: rotate(0deg) translateY(-5px);
 }
 .hero-foot {
   position: relative;
