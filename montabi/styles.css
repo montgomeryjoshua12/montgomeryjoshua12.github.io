@@ -78,6 +78,16 @@ img {
   letter-spacing: 0.18em;
   line-height: 1;
 }
+.logo-link {
+  width: 132px;
+  height: 76px;
+  overflow: hidden;
+}
+.nav-logo {
+  width: 132px;
+  height: 76px;
+  object-fit: contain;
+}
 .logo-a {
   display: inline-block;
   margin: 0 0.3em 0 -0.04em;
