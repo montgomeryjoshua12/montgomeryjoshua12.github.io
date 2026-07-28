@@ -256,7 +256,7 @@ h1 em {
   font-size: clamp(3.5rem, 5.5vw, 5.6rem);
 }
 .dashboard-hero .brand-panel {
-  animation: none;
+  animation: rise-in 1s ease-out 0.45s both;
 }
 .hero-foot {
   position: relative;
