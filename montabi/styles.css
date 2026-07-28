@@ -290,6 +290,38 @@ h1 em {
   color: var(--amber);
 }
 
+.home-intelligence {
+  border-top: 1px solid var(--line);
+  background: var(--cream);
+}
+.home-intelligence-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+  align-items: end;
+  gap: 90px;
+}
+.home-intelligence h2 {
+  max-width: 920px;
+  margin-bottom: 20px;
+}
+.home-tagline {
+  margin: 0;
+  color: var(--rust);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 3.6vw, 4rem);
+  font-style: italic;
+  line-height: 1.05;
+}
+.home-intelligence-copy {
+  padding-bottom: 8px;
+}
+.home-intelligence-copy p {
+  margin: 0 0 28px;
+  color: var(--forest-700);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+}
+
 .intro-section {
   background: var(--cream);
 }
@@ -401,6 +433,19 @@ h2 {
   max-width: 450px;
   color: rgba(247, 239, 226, 0.65);
   font-size: 1.05rem;
+}
+.approach-link {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--cream);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.approach-link span {
+  margin-left: 12px;
+  color: var(--amber);
 }
 .process-list {
   margin: 0;
@@ -718,6 +763,7 @@ footer {
   .intro-grid,
   .section-heading,
   .approach-grid,
+  .home-intelligence-inner,
   .about-grid {
     grid-template-columns: 1fr;
   }
@@ -737,6 +783,7 @@ footer {
   .intro-grid,
   .section-heading,
   .approach-grid,
+  .home-intelligence-inner,
   .about-grid {
     gap: 42px;
   }
