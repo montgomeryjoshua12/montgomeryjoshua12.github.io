@@ -260,12 +260,14 @@ h1 em {
 }
 .hero-content.dashboard-hero {
   grid-template-columns: minmax(0, 0.82fr) minmax(560px, 1.18fr);
+  align-items: start;
   gap: 48px;
 }
 .dashboard-hero .hero-copy h1 {
   font-size: clamp(3.5rem, 5.5vw, 5.6rem);
 }
 .dashboard-hero .brand-panel {
+  margin-top: 68px;
   animation: rise-in 1s ease-out 0.45s both;
 }
 .hero-foot {
@@ -721,6 +723,9 @@ footer {
   }
   .hero-content.dashboard-hero {
     grid-template-columns: 1fr;
+  }
+  .dashboard-hero .brand-panel {
+    margin-top: 0;
   }
   .hero-content {
     padding: 84px 0 110px;
