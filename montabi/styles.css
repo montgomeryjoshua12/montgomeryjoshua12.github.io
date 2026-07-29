@@ -420,27 +420,21 @@ h2 {
   color: var(--cream);
   background: var(--forest-900);
 }
-.home-approach {
-  color: var(--forest-950);
-  background: var(--cream);
-  border-top: 1px solid var(--line);
+.approach-visual {
+  padding: clamp(24px, 4vw, 56px) 0 clamp(54px, 7vw, 96px);
+  background: #fdf8f0;
 }
-.home-approach .approach-grid {
+.approach-visual-inner {
+  display: flex;
+  justify-content: center;
+}
+.approach-visual img {
   display: block;
-}
-.home-approach h2 {
-  max-width: 980px;
-}
-.home-approach h2 > span {
-  color: var(--rust);
-  font-style: italic;
-}
-.home-approach .approach-lede {
-  max-width: 700px;
-  color: var(--forest-700);
-}
-.home-approach .approach-link {
-  color: var(--forest-950);
+  width: min(100%, 941px);
+  height: auto;
+  border: 0;
+  background: #fdf8f0;
+  box-shadow: none;
 }
 .approach-grid {
   display: grid;
