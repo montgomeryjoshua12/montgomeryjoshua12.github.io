@@ -2,7 +2,8 @@
   const params = new URLSearchParams(window.location.search);
   if (params.get("review") !== "1") return;
 
-  const STORAGE_KEY = "montabi-review-comments-v1";
+  const reviewSession = params.get("session") || "default";
+  const STORAGE_KEY = `montabi-review-comments-${reviewSession}`;
   const UI_ATTR = "data-montabi-review-ui";
   let selecting = true;
   let selectedElement = null;
@@ -217,6 +218,7 @@
         const url = new URL(link.href, window.location.href);
         if (url.origin === window.location.origin) {
           url.searchParams.set("review", "1");
+          if (params.has("session")) url.searchParams.set("session", reviewSession);
           link.href = url.toString();
         }
       } catch {}
@@ -226,6 +228,7 @@
         const url = new URL(frame.src, window.location.href);
         if (url.origin === window.location.origin) {
           url.searchParams.set("review", "1");
+          if (params.has("session")) url.searchParams.set("session", reviewSession);
           frame.src = url.toString();
         }
       } catch {}
@@ -291,7 +294,7 @@
   }
 
   function download() {
-    const blob = new Blob([JSON.stringify({ site: "Montabi", exportedAt: new Date().toISOString(), comments }, null, 2)], {
+    const blob = new Blob([JSON.stringify({ site: "Montabi", session: reviewSession, exportedAt: new Date().toISOString(), comments }, null, 2)], {
       type: "application/json",
     });
     const link = document.createElement("a");
