@@ -420,21 +420,227 @@ h2 {
   color: var(--cream);
   background: var(--forest-900);
 }
-.approach-visual {
-  padding: clamp(24px, 4vw, 56px) 0 clamp(54px, 7vw, 96px);
+.approach-interactive {
+  padding: clamp(68px, 8vw, 118px) 0;
+  color: var(--forest-950);
   background: #fdf8f0;
 }
-.approach-visual-inner {
-  display: flex;
-  justify-content: center;
+.approach-interactive-heading {
+  max-width: 990px;
+  margin: 0 auto clamp(38px, 5vw, 66px);
+  text-align: center;
 }
-.approach-visual img {
+.approach-interactive-heading h2 {
+  margin-bottom: 0;
+}
+.approach-interactive-heading h2 em {
   display: block;
-  width: min(100%, 941px);
-  height: auto;
+  margin-top: 8px;
+  color: var(--rust);
+  font-weight: 400;
+}
+.analyst-band {
+  position: relative;
+  display: flex;
+  max-width: 920px;
+  min-height: 126px;
+  align-items: center;
+  gap: 24px;
+  margin: 0 auto 30px;
+  padding: 28px 44px;
+  color: white;
+  background: linear-gradient(120deg, var(--forest-950), var(--forest-800));
+  border-radius: 24px;
+}
+.analyst-symbol {
+  display: grid;
+  width: 66px;
+  height: 66px;
+  flex: none;
+  place-items: center;
+  color: var(--amber);
+  border: 2px solid var(--amber);
+  border-radius: 50%;
+  font-size: 2.3rem;
+}
+.analyst-band strong {
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.analyst-band p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.76);
+}
+.approach-stage-layout {
+  display: grid;
+  grid-template-columns: minmax(380px, 0.95fr) minmax(380px, 1.05fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.approach-stage-tabs {
+  display: grid;
+  gap: 8px;
+}
+.approach-stage {
+  display: grid;
+  min-height: 86px;
+  grid-template-columns: 42px 48px 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  color: var(--forest-700);
+  background: transparent;
   border: 0;
-  background: #fdf8f0;
-  box-shadow: none;
+  border-left: 3px solid var(--line);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+.approach-stage > span {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.approach-stage > i {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: var(--forest-900);
+  background: rgba(199, 91, 34, 0.09);
+  border-radius: 50%;
+  font-size: 1.15rem;
+  font-style: normal;
+}
+.approach-stage > strong {
+  font-size: 0.9rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+.approach-stage:hover,
+.approach-stage.is-active {
+  color: var(--forest-950);
+  background: rgba(255, 255, 255, 0.54);
+  border-left-color: var(--rust);
+}
+.approach-stage.is-active > i {
+  color: white;
+  background: var(--forest-900);
+}
+.approach-stage-detail {
+  min-height: 368px;
+  padding: 42px;
+  color: white;
+  background: var(--forest-900);
+  border-radius: 24px;
+}
+.approach-stage-detail > small {
+  color: var(--amber);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.approach-stage-detail h3 {
+  margin: 20px 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 400;
+}
+.approach-stage-detail > p {
+  color: rgba(255, 255, 255, 0.73);
+  font-size: 1rem;
+}
+.approach-stage-detail > div {
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.17);
+}
+.approach-stage-detail > div span {
+  color: var(--amber);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.approach-stage-detail > div p {
+  margin: 9px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.9rem;
+}
+.analyst-impact {
+  max-width: 1000px;
+  margin: clamp(62px, 8vw, 104px) auto 0;
+  text-align: center;
+}
+.analyst-impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 30px;
+  text-align: left;
+}
+.analyst-impact-grid article {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 18px;
+}
+.analyst-impact-grid article > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: white;
+  background: var(--rust);
+  border-radius: 50%;
+  font-weight: 800;
+}
+.analyst-impact-grid h3 {
+  margin: 18px 0 12px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+.analyst-impact-grid ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--forest-700);
+}
+.analyst-impact-grid li {
+  margin-top: 8px;
+}
+.approach-principles {
+  display: grid;
+  max-width: 1000px;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 24px auto 0;
+  padding-top: 26px;
+  border-top: 1px solid rgba(199, 91, 34, 0.24);
+}
+.approach-principles > div {
+  padding: 0 18px;
+  border-right: 1px solid rgba(20, 75, 56, 0.14);
+  text-align: center;
+}
+.approach-principles > div:last-child {
+  border-right: 0;
+}
+.approach-principles strong,
+.approach-principles span {
+  display: block;
+}
+.approach-principles strong {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+.approach-principles span {
+  margin-top: 7px;
+  color: var(--forest-700);
+  font-size: 0.75rem;
 }
 .approach-grid {
   display: grid;
@@ -815,6 +1021,19 @@ footer {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+  .approach-stage-layout {
+    grid-template-columns: 1fr;
+  }
+  .approach-stage-detail {
+    min-height: 0;
+  }
+  .approach-principles {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 0;
+  }
+  .approach-principles > div:nth-child(2) {
+    border-right: 0;
+  }
 }
 @media (max-width: 640px) {
   .shell {
@@ -857,6 +1076,44 @@ footer {
   .footer-inner {
     align-items: flex-start;
     flex-direction: column;
+  }
+  .analyst-band {
+    align-items: flex-start;
+    padding: 24px;
+    border-radius: 18px;
+  }
+  .analyst-symbol {
+    width: 48px;
+    height: 48px;
+    font-size: 1.7rem;
+  }
+  .approach-stage {
+    grid-template-columns: 32px 40px 1fr;
+    padding: 12px 10px;
+  }
+  .approach-stage > i {
+    width: 38px;
+    height: 38px;
+  }
+  .approach-stage-detail {
+    padding: 28px;
+    border-radius: 18px;
+  }
+  .analyst-impact-grid,
+  .approach-principles {
+    grid-template-columns: 1fr;
+  }
+  .approach-principles {
+    gap: 0;
+  }
+  .approach-principles > div,
+  .approach-principles > div:nth-child(2) {
+    padding: 18px 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(20, 75, 56, 0.14);
+  }
+  .approach-principles > div:last-child {
+    border-bottom: 0;
   }
   .demo-intro {
     padding-block: 54px 36px;
