@@ -260,14 +260,36 @@ h1 em {
 }
 .hero-content.dashboard-hero {
   grid-template-columns: minmax(0, 0.82fr) minmax(560px, 1.18fr);
+  grid-template-areas:
+    "heading heading"
+    "copy image";
   align-items: start;
-  gap: 48px;
+  column-gap: 48px;
+  row-gap: 28px;
+  padding-block: 54px 68px;
 }
-.dashboard-hero .hero-copy h1 {
-  font-size: clamp(3.5rem, 5.5vw, 5.6rem);
+.dashboard-hero .hero-heading {
+  grid-area: heading;
+}
+.dashboard-hero .hero-heading .eyebrow {
+  margin-bottom: 14px;
+}
+.dashboard-hero .hero-heading h1 {
+  max-width: none;
+  margin-bottom: 0;
+  font-size: clamp(2.55rem, 3.3vw, 3rem);
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+.dashboard-hero .hero-copy {
+  grid-area: copy;
+}
+.dashboard-hero .hero-lede {
+  margin: 0 0 30px;
 }
 .dashboard-hero .brand-panel {
-  margin-top: 68px;
+  grid-area: image;
+  margin-top: 0;
   animation: rise-in 1s ease-out 0.45s both;
 }
 .hero-divider {
@@ -693,6 +715,9 @@ footer {
 .hero-copy {
   animation: rise-in 1s ease-out 0.45s both;
 }
+.hero-heading {
+  animation: rise-in 1s ease-out 0.45s both;
+}
 .brand-panel {
   animation: rise-in 1s ease-out 0.68s both;
 }
@@ -764,6 +789,14 @@ footer {
   }
   .hero-content.dashboard-hero {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "heading"
+      "copy"
+      "image";
+  }
+  .dashboard-hero .hero-heading h1 {
+    font-size: clamp(3.15rem, 13vw, 5rem);
+    white-space: normal;
   }
   .dashboard-hero .brand-panel {
     margin-top: 0;
