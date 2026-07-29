@@ -239,8 +239,10 @@ h1 em {
   overflow: hidden;
   background: var(--forest-950);
   box-shadow: 0 26px 70px rgba(7, 31, 24, 0.22);
-  transform: none;
-  transition: none;
+  transform: translateZ(0);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
 }
 .dashboard-preview-link img {
   width: 100%;
@@ -264,8 +266,8 @@ h1 em {
   margin-left: 8px;
 }
 .dashboard-preview-link:hover {
-  box-shadow: 0 26px 70px rgba(7, 31, 24, 0.22);
-  transform: none;
+  box-shadow: 0 34px 84px rgba(7, 31, 24, 0.3);
+  transform: translateY(-5px);
 }
 .hero-content.dashboard-hero {
   grid-template-columns: minmax(0, 0.82fr) minmax(560px, 1.18fr);
@@ -313,6 +315,7 @@ h1 em {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.3rem;
   font-weight: 700;
+  animation: delta-pulse 3.6s ease-in-out infinite;
 }
 .dashboard-hero .hero-copy {
   grid-area: copy;
@@ -631,6 +634,24 @@ h2 {
   color: white;
   background: linear-gradient(120deg, var(--forest-950), var(--forest-800));
   border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.analyst-band::after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -45%;
+  width: 34%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  content: "";
+  transform: skewX(-18deg);
+  animation: data-sweep 5.6s ease-in-out infinite;
+}
+.analyst-band > * {
+  position: relative;
+  z-index: 1;
 }
 .analyst-symbol {
   display: grid;
@@ -712,6 +733,7 @@ h2 {
 .approach-stage.is-active > i {
   color: white;
   background: var(--forest-900);
+  animation: active-node 2.8s ease-in-out infinite;
 }
 .approach-stage-detail {
   min-height: 368px;
@@ -719,6 +741,9 @@ h2 {
   color: white;
   background: var(--forest-900);
   border-radius: 24px;
+}
+.approach-stage-detail.is-switching {
+  animation: stage-switch 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .approach-stage-detail > small {
   color: var(--amber);
@@ -1373,6 +1398,104 @@ footer {
   }
 }
 
+/* Modern motion system: progressive, purposeful, and invisible to reduced-motion users. */
+.motion-ready [data-tech-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+.motion-ready [data-tech-reveal].tech-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.motion-ready .home-service-grid.tech-visible article,
+.motion-ready .service-grid.tech-visible article,
+.motion-ready .engagement-grid.tech-visible article,
+.motion-ready .approach-principles.tech-visible > div {
+  animation: tech-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.motion-ready .home-service-grid.tech-visible article:nth-child(2),
+.motion-ready .service-grid.tech-visible article:nth-child(2),
+.motion-ready .engagement-grid.tech-visible article:nth-child(2),
+.motion-ready .approach-principles.tech-visible > div:nth-child(2) {
+  animation-delay: 0.09s;
+}
+.motion-ready .home-service-grid.tech-visible article:nth-child(3),
+.motion-ready .service-grid.tech-visible article:nth-child(3),
+.motion-ready .engagement-grid.tech-visible article:nth-child(3),
+.motion-ready .approach-principles.tech-visible > div:nth-child(3) {
+  animation-delay: 0.18s;
+}
+.motion-ready .home-service-grid.tech-visible article:nth-child(4),
+.motion-ready .service-grid.tech-visible article:nth-child(4),
+.motion-ready .approach-principles.tech-visible > div:nth-child(4) {
+  animation-delay: 0.27s;
+}
+.button span,
+.text-link span,
+.dashboard-preview-link span b {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.button:hover span,
+.text-link:hover span,
+.dashboard-preview-link:hover span b {
+  transform: translate(3px, -1px);
+}
+
+@keyframes tech-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes stage-switch {
+  from {
+    opacity: 0.55;
+    transform: translateY(10px) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes data-sweep {
+  0%,
+  22% {
+    left: -45%;
+  }
+  62%,
+  100% {
+    left: 120%;
+  }
+}
+@keyframes active-node {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(20, 75, 56, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(20, 75, 56, 0.11);
+  }
+}
+@keyframes delta-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 0 rgba(20, 75, 56, 0);
+  }
+  50% {
+    transform: scale(1.08);
+    text-shadow: 0 0 18px rgba(20, 75, 56, 0.2);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1383,7 +1506,8 @@ footer {
     animation: none !important;
     transition: none !important;
   }
-  [data-reveal] {
+  [data-reveal],
+  .motion-ready [data-tech-reveal] {
     opacity: 1;
     transform: none;
   }
