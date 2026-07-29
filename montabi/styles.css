@@ -270,6 +270,7 @@ h1 em {
   transform: translateY(-5px);
 }
 .hero-content.dashboard-hero {
+  min-height: auto;
   grid-template-columns: minmax(0, 0.82fr) minmax(560px, 1.18fr);
   grid-template-areas:
     "heading heading"
@@ -277,7 +278,7 @@ h1 em {
   align-items: start;
   column-gap: 48px;
   row-gap: 28px;
-  padding-block: 54px 68px;
+  padding-block: 40px 52px;
 }
 .dashboard-hero .hero-heading {
   grid-area: heading;
@@ -427,6 +428,7 @@ h2 {
 }
 
 .home-services {
+  padding-block: 82px;
   background: #eee8da;
   border-top: 1px solid var(--line);
 }
@@ -472,7 +474,7 @@ h2 {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 64px;
-  margin-top: 72px;
+  margin-top: 48px;
   padding: 48px;
   color: white;
   background: var(--forest-950);
@@ -604,13 +606,13 @@ h2 {
   background: var(--forest-900);
 }
 .approach-interactive {
-  padding: clamp(68px, 8vw, 118px) 0;
+  padding: clamp(58px, 6vw, 82px) 0;
   color: var(--forest-950);
   background: var(--cream);
 }
 .approach-interactive-heading {
   max-width: 990px;
-  margin: 0 auto clamp(38px, 5vw, 66px);
+  margin: 0 auto clamp(30px, 4vw, 46px);
   text-align: center;
 }
 .approach-interactive-heading h2 {
@@ -781,7 +783,7 @@ h2 {
 }
 .analyst-impact {
   max-width: 1000px;
-  margin: clamp(62px, 8vw, 104px) auto 0;
+  margin: clamp(44px, 5vw, 62px) auto 0;
   text-align: center;
 }
 .analyst-impact-grid {
