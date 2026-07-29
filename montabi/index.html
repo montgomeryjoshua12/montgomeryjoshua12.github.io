@@ -8,7 +8,7 @@
       content="Montabi turns financial and operational data into trusted dashboards, sharper analysis, and practical decisions."
     />
     <title>Montabi | Augmented Business Intelligence</title>
-    <link rel="stylesheet" href="./styles.css?v=compact-home-1" />
+    <link rel="stylesheet" href="./styles.css?v=decision-signal-1" />
   </head>
   <body>
     <main class="site-fade static-site">
@@ -43,10 +43,84 @@
             </div>
           </div>
           <div class="brand-panel">
-            <a class="dashboard-preview-link" href="./demo/" aria-label="Open the interactive Montabi dashboard demo">
-              <img src="./dashboard-overview-home.png" alt="Overview of the Montabi working capital dashboard" />
-              <span>Explore the live dashboard <b>↗</b></span>
-            </a>
+            <div class="decision-signal" aria-labelledby="signal-title">
+              <div class="signal-header">
+                <div>
+                  <span class="signal-status"><i></i> Live business signal</span>
+                  <h2 id="signal-title">What needs your attention?</h2>
+                </div>
+                <span class="signal-period">This month</span>
+              </div>
+
+              <div class="signal-tabs" role="tablist" aria-label="Business signals">
+                <button
+                  class="signal-tab is-active"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  data-label="Cash coverage"
+                  data-value="5.2"
+                  data-unit="weeks"
+                  data-change="+0.8 weeks"
+                  data-insight="You can cover more than five weeks of expected operating costs. Collections improved while near-term commitments remained controlled."
+                  data-action="Protect the gain: keep invoices over 30 days below 18% of receivables."
+                  data-bars="52,61,57,68,72,78,86"
+                >
+                  Cash
+                </button>
+                <button
+                  class="signal-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-label="Sales growth"
+                  data-value="7.9"
+                  data-unit="%"
+                  data-change="+2.1 pts"
+                  data-insight="Sales are growing faster than the prior three-month average, led by repeat customers and higher average order value."
+                  data-action="Lean in: protect service capacity while expanding the strongest customer segment."
+                  data-bars="48,51,55,59,63,72,82"
+                >
+                  Growth
+                </button>
+                <button
+                  class="signal-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-label="Operating margin"
+                  data-value="19.6"
+                  data-unit="%"
+                  data-change="+1.4 pts"
+                  data-insight="Revenue growth is outpacing operating expenses. Vendor and labor costs remain within the current plan."
+                  data-action="Hold the line: review discretionary spend before adding fixed overhead."
+                  data-bars="58,55,61,64,66,73,79"
+                >
+                  Margin
+                </button>
+              </div>
+
+              <div class="signal-body" aria-live="polite">
+                <div class="signal-metric">
+                  <span data-signal-label>Cash coverage</span>
+                  <strong><b data-signal-value>5.2</b> <small data-signal-unit>weeks</small></strong>
+                  <em data-signal-change>+0.8 weeks</em>
+                </div>
+                <div class="signal-chart" aria-hidden="true">
+                  <i style="--bar: 52%"></i><i style="--bar: 61%"></i><i style="--bar: 57%"></i><i style="--bar: 68%"></i><i style="--bar: 72%"></i
+                  ><i style="--bar: 78%"></i><i style="--bar: 86%"></i>
+                </div>
+                <p data-signal-insight>
+                  You can cover more than five weeks of expected operating costs. Collections improved while near-term commitments remained
+                  controlled.
+                </p>
+                <div class="signal-action">
+                  <span>Decision cue</span><strong data-signal-action>Protect the gain: keep invoices over 30 days below 18% of receivables.</strong>
+                </div>
+              </div>
+
+              <a class="signal-demo-link" href="./demo/">Explore the full intelligence suite <span>↗</span></a>
+            </div>
           </div>
         </div>
       </section>
@@ -220,6 +294,7 @@
       </footer>
     </main>
     <script src="./site-motion.js?v=1"></script>
+    <script src="./hero-intelligence.js?v=1"></script>
     <script src="./approach-interactive.js?v=2"></script>
     <script src="./review.js?v=2"></script>
   </body>
