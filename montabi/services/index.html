@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Explore Montabi dashboard, finance, operations, and data foundation services." />
+    <meta name="description" content="Explore Montabi end-to-end business intelligence services, from KPI discovery and secure connections to automated dashboards." />
     <title>Services | Montabi</title>
-    <link rel="stylesheet" href="../styles.css?v=modern-motion-1" />
+    <link rel="stylesheet" href="../styles.css?v=end-to-end-bi-1" />
   </head>
   <body>
     <main class="content-page static-site">
@@ -23,59 +23,147 @@
       </nav>
 
       <header class="page-hero shell" data-tech-reveal>
-        <p class="section-kicker">Services</p>
-        <h1>Intelligence built around your business.</h1>
-        <p class="page-tagline">AI Augmented, Not AI Dependent</p>
+        <p class="section-kicker">Service 01</p>
+        <h1>End-to-End Business Intelligence.</h1>
+        <p class="page-tagline">From business requirements to continuously refreshed decisions.</p>
         <p>
-          Our approach is centered around the Analyst in the Loop philosophy. We believe AI should accelerate human expertise, not replace it. Every
-          insight is validated through analytical rigor before it reaches your business.
+          Montabi designs the complete intelligence system around your business—your decisions, source systems, technology, stakeholders, and
+          operating rhythm. Automation accelerates every stage while an analyst protects context, integrity, and accountability.
         </p>
       </header>
 
-      <section class="services section page-section">
+      <section class="bi-service section page-section" aria-labelledby="bi-service-title">
         <div class="shell">
-          <div class="service-grid" data-tech-reveal>
-            <article class="service-card">
-              <span class="service-number">01</span>
-              <h3>Executive Dashboards</h3>
-              <p>Decision-ready Power BI, Tableau, and Shiny experiences that replace reporting friction with a shared view of performance.</p>
-              <ul>
-                <li>KPI design</li>
-                <li>Automated reporting</li>
-                <li>Executive views</li>
-              </ul>
-            </article>
-            <article class="service-card">
-              <span class="service-number">02</span>
-              <h3>Finance &amp; Operations Analytics</h3>
-              <p>Variance analysis, forecasting support, profitability views, and operating insights grounded in real finance experience.</p>
-              <ul>
-                <li>Planning</li>
-                <li>Performance</li>
-                <li>Business cases</li>
-              </ul>
-            </article>
-            <article class="service-card">
-              <span class="service-number">03</span>
-              <h3>Data Foundations</h3>
-              <p>Clean, documented, repeatable data workflows that turn scattered sources into trustworthy analysis-ready information.</p>
-              <ul>
-                <li>SQL</li>
-                <li>Alteryx</li>
-                <li>R</li>
-                <li>Data quality</li>
-              </ul>
-            </article>
-            <article class="service-card">
-              <span class="service-number">04</span>
-              <h3>Decision Intelligence</h3>
-              <p>Focused statistical analysis and practical models that clarify what changed, what matters, and what to do next.</p>
-              <ul>
-                <li>Regression</li>
-                <li>Scenario analysis</li>
-                <li>Storytelling</li>
-              </ul>
-            </article>
+          <header class="bi-service-heading" data-tech-reveal>
+            <div>
+              <p class="section-kicker">The intelligence lifecycle</p>
+              <h2 id="bi-service-title">One connected path from question to action.</h2>
+            </div>
+            <p>Select a stage to see what is delivered, how the analyst contributes, and where governance protects the result.</p>
+          </header>
+
+          <div class="bi-flow" data-tech-reveal>
+            <div class="bi-flow-track" role="tablist" aria-label="End-to-end business intelligence stages">
+              <span class="bi-flow-progress" aria-hidden="true"></span>
+              <button
+                class="bi-flow-step is-active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-stage="01"
+                data-phase="Discover"
+                data-title="Consult & Define"
+                data-description="We begin with the decisions the system must support—not the technology. Together we define KPIs, reporting requirements, stakeholder needs, security expectations, and the right refresh cadence."
+                data-outputs="KPI and metric blueprint|Stakeholder and reporting map|Refresh, access, and success requirements"
+                data-analyst="Facilitates discovery, challenges assumptions, translates business questions into measurable requirements, and establishes a shared definition of success."
+                data-governance="Metric ownership and definitions are agreed before data work begins, preventing conflicting versions of the truth."
+              >
+                <span>01</span><i aria-hidden="true">◎</i><strong>Consult</strong><small>Define the decision</small>
+              </button>
+              <button
+                class="bi-flow-step"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-stage="02"
+                data-phase="Connect"
+                data-title="Securely Connect Your Systems"
+                data-description="We connect to the accounting, ERP, CRM, and operational systems that contain the data your reporting requires—preferably through secure, documented APIs."
+                data-outputs="Source-system inventory|Secure API connections|Field mapping and source lineage"
+                data-analyst="Confirms source ownership, reconciles the data to known business totals, and verifies that each field represents the real operating process."
+                data-governance="Least-privilege access, documented lineage, and explicit source ownership establish a controlled data foundation."
+              >
+                <span>02</span><i aria-hidden="true">⌁</i><strong>Connect</strong><small>Secure the sources</small>
+              </button>
+              <button
+                class="bi-flow-step"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-stage="03"
+                data-phase="Prepare"
+                data-title="Transform & Analyze"
+                data-description="AI-augmented workflows clean, combine, test, and model the data for analysis. The transformation logic is reproducible and automated so every refresh follows the same controlled process."
+                data-outputs="Validated analytical data model|Automated transformation pipeline|Documented calculations and quality tests"
+                data-analyst="Designs the business logic, investigates anomalies, tests the outputs, and determines where AI-generated work requires correction or additional context."
+                data-governance="Repeatable tests, exception handling, and transparent transformation logic preserve accuracy and consistency."
+              >
+                <span>03</span><i aria-hidden="true">✦</i><strong>Prepare</strong><small>Structure the truth</small>
+              </button>
+              <button
+                class="bi-flow-step"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-stage="04"
+                data-phase="Build"
+                data-title="Create the Decision Experience"
+                data-description="We create a role-specific dashboard in your existing environment—Power BI, Tableau, or another platform—or build a tailored application when the decision requires something different."
+                data-outputs="Custom dashboard or application|Role-based views and permissions|User testing and deployment plan"
+                data-analyst="Shapes the visual hierarchy, verifies each calculation, tests the experience with stakeholders, and ensures the product answers the original business questions."
+                data-governance="Every visual traces to documented logic, approved measures, and the appropriate access controls."
+              >
+                <span>04</span><i aria-hidden="true">▥</i><strong>Build</strong><small>Design for decisions</small>
+              </button>
+              <button
+                class="bi-flow-step"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-stage="05"
+                data-phase="Operate"
+                data-title="Refresh, Monitor & Evolve"
+                data-description="Automated refreshes deliver current information on the agreed cadence. Monitoring and support keep the suite dependable as source systems, definitions, and business priorities evolve."
+                data-outputs="Scheduled automated refreshes|Data-quality and pipeline monitoring|Training, support, and controlled enhancements"
+                data-analyst="Reviews exceptions, communicates issues, supports adoption, and evolves the model when the business—not merely the data—changes."
+                data-governance="Refresh status, data exceptions, and approved changes remain visible so stakeholders know when and why the output changed."
+              >
+                <span>05</span><i aria-hidden="true">↻</i><strong>Operate</strong><small>Refresh with confidence</small>
+              </button>
+            </div>
+
+            <div class="bi-flow-workspace">
+              <article class="bi-flow-detail" aria-live="polite">
+                <div class="bi-detail-heading">
+                  <p>Stage <b data-bi-stage>01</b> · <span data-bi-phase>Discover</span></p>
+                  <h3 data-bi-title>Consult &amp; Define</h3>
+                  <p data-bi-description>
+                    We begin with the decisions the system must support—not the technology. Together we define KPIs, reporting requirements,
+                    stakeholder needs, security expectations, and the right refresh cadence.
+                  </p>
+                </div>
+                <div class="bi-detail-lower">
+                  <div>
+                    <span>What this stage delivers</span>
+                    <ul data-bi-outputs>
+                      <li>KPI and metric blueprint</li>
+                      <li>Stakeholder and reporting map</li>
+                      <li>Refresh, access, and success requirements</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <span>Analyst contribution</span>
+                    <p data-bi-analyst>
+                      Facilitates discovery, challenges assumptions, translates business questions into measurable requirements, and establishes a
+                      shared definition of success.
+                    </p>
+                  </div>
+                </div>
+                <div class="bi-governance-note">
+                  <span>Integrity &amp; governance</span>
+                  <p data-bi-governance>
+                    Metric ownership and definitions are agreed before data work begins, preventing conflicting versions of the truth.
+                  </p>
+                </div>
+              </article>
+
+              <aside class="bi-guardrails" aria-label="Controls present throughout every stage">
+                <p>Present at every stage</p>
+                <div><span>Δ</span><strong>Analyst in the Loop</strong><small>Human context, validation, and accountability.</small></div>
+                <div><span>✓</span><strong>Data Integrity &amp; Governance</strong><small>Controlled access, quality tests, and clear ownership.</small></div>
+                <div><span>↔</span><strong>Transparent by Design</strong><small>Visible sources, logic, assumptions, and changes.</small></div>
+              </aside>
+            </div>
           </div>
         </div>
       </section>
@@ -165,6 +253,7 @@
       </footer>
     </main>
     <script src="../site-motion.js?v=1"></script>
+    <script src="./services-bi-flow.js?v=1"></script>
     <script src="../review.js?v=2"></script>
   </body>
 </html>
