@@ -44,10 +44,50 @@ img {
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: auto;
   overflow: hidden;
   color: var(--forest-950);
   background: var(--cream);
+}
+.hero-section-break {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 22px;
+  padding-block: 12px 28px;
+}
+.hero-section-break > span {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(20, 75, 56, 0.24));
+}
+.hero-section-break > span:last-child {
+  background: linear-gradient(90deg, rgba(20, 75, 56, 0.24), transparent);
+}
+.hero-section-break > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-section-break i {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  color: var(--cream);
+  background: var(--forest-800);
+  border-radius: 50%;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  font-style: normal;
+}
+.hero-section-break small {
+  color: var(--forest-700);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 .hero-grid,
 .contact-grid {
