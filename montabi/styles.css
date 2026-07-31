@@ -71,16 +71,11 @@ img {
   gap: 12px;
 }
 .hero-section-break i {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  place-items: center;
-  color: var(--cream);
-  background: var(--forest-800);
-  border-radius: 50%;
+  color: var(--forest-800);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   font-style: normal;
+  font-weight: 700;
 }
 .hero-section-break small {
   color: var(--forest-700);
@@ -542,16 +537,31 @@ h1 em {
 }
 .title-divider span {
   position: absolute;
-  display: grid;
-  width: 34px;
+  display: flex;
+  width: auto;
   height: 34px;
-  place-items: center;
+  align-items: center;
+  gap: 12px;
+  padding-inline: 14px;
   color: var(--forest-800);
   background: var(--cream);
+}
+.title-divider span i {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.3rem;
+  font-style: normal;
   font-weight: 700;
   animation: delta-pulse 3.6s ease-in-out infinite;
+}
+.title-divider span i:last-child {
+  animation-delay: 0.35s;
+}
+.title-divider span small {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 .dashboard-hero .hero-copy {
   grid-area: copy;
