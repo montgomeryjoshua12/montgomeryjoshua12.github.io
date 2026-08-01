@@ -1652,20 +1652,21 @@ footer {
   column-gap: clamp(28px, 3vw, 42px);
   row-gap: 14px;
 }
-.services-page-title {
+.services-hero > .services-page-title {
   width: 100%;
-  max-width: min(100%, 1040px);
+  max-width: min(100%, 920px);
   grid-column: 1 / -1;
   justify-self: center;
-  margin: 0 auto;
+  margin: 0 auto 8px;
   color: var(--forest-950);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.25rem, 3.25vw, 3.05rem);
+  font-size: clamp(2.15rem, 3vw, 2.85rem);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 0.98;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  text-wrap: balance;
 }
 .services-hero-copy > p:last-child {
   max-width: 680px;
