@@ -1660,7 +1660,7 @@ footer {
   margin: 0 auto 8px;
   color: var(--forest-950);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.15rem, 3vw, 2.85rem);
+  font-size: clamp(2.5rem, 3.45vw, 3.35rem);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 0.98;
