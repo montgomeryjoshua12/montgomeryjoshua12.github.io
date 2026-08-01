@@ -744,10 +744,26 @@ h2 {
   gap: 72px;
   margin-bottom: 44px;
 }
+.bi-service-heading .section-kicker {
+  color: var(--rust);
+}
 .bi-service-heading h2 {
   max-width: 800px;
   margin-bottom: 0;
-  font-size: clamp(2.7rem, 5vw, 4.8rem);
+  font-size: clamp(2.55rem, 3.3vw, 3rem);
+  letter-spacing: -0.045em;
+}
+.bi-service-heading h2 span,
+.bi-service-heading h2 em {
+  display: block;
+}
+.bi-service-heading h2 em {
+  margin-top: 14px;
+  color: var(--rust);
+  font-size: clamp(1.45rem, 2.1vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
 }
 .bi-service-heading > p {
   margin: 0;
@@ -1702,7 +1718,7 @@ footer {
   grid-template-rows: 1fr auto;
   align-items: center;
   gap: 26px;
-  padding: 50px 36px 32px;
+  padding: 88px 36px 32px;
   overflow: hidden;
   background:
     linear-gradient(rgba(20, 75, 56, 0.07) 1px, transparent 1px),
@@ -1712,6 +1728,19 @@ footer {
   border: 1px solid rgba(20, 75, 56, 0.15);
   border-radius: 30px;
   box-shadow: 0 30px 70px rgba(7, 31, 24, 0.1);
+}
+.system-visual-title {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  left: 28px;
+  color: var(--forest-950);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  text-align: center;
 }
 .bi-system-visual::before {
   position: absolute;
@@ -2211,8 +2240,12 @@ footer {
   .bi-system-visual {
     min-height: 355px;
     gap: 10px;
-    padding: 24px 14px 18px;
+    padding: 72px 14px 18px;
     border-radius: 20px;
+  }
+  .system-visual-title {
+    top: 22px;
+    font-size: 1.35rem;
   }
   .system-stack {
     gap: 16px;
