@@ -1653,15 +1653,18 @@ footer {
   row-gap: 14px;
 }
 .services-page-title {
-  max-width: none;
+  width: 100%;
+  max-width: min(100%, 1040px);
   grid-column: 1 / -1;
-  margin: 0;
+  justify-self: center;
+  margin: 0 auto;
   color: var(--forest-950);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.35rem, 3.6vw, 3.45rem);
+  font-size: clamp(2.25rem, 3.25vw, 3.05rem);
   font-weight: 400;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.035em;
   line-height: 0.98;
+  text-align: center;
   white-space: nowrap;
 }
 .services-hero-copy > p:last-child {
@@ -2193,7 +2196,7 @@ footer {
     padding-block: 58px;
   }
   .services-page-title {
-    font-size: clamp(2.35rem, 10vw, 3.3rem);
+    font-size: clamp(2.15rem, 9vw, 3rem);
   }
   .bi-system-visual {
     min-height: 355px;
