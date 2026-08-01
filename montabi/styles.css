@@ -1652,21 +1652,28 @@ footer {
   column-gap: clamp(28px, 3vw, 42px);
   row-gap: 14px;
 }
-.services-hero > .services-page-title {
+.services-hero-heading {
   width: 100%;
   max-width: min(100%, 920px);
   grid-column: 1 / -1;
   justify-self: center;
   margin: 0 auto 8px;
+  text-align: center;
+}
+.services-hero-heading > .services-page-title {
+  max-width: none;
+  margin: 0;
   color: var(--forest-950);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.5rem, 3.45vw, 3.35rem);
+  font-size: clamp(2.55rem, 3.3vw, 3rem);
   font-weight: 400;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.045em;
   line-height: 0.98;
-  text-align: center;
-  white-space: normal;
+  white-space: nowrap;
   text-wrap: balance;
+}
+.services-hero-heading .title-divider {
+  margin-top: 12px;
 }
 .services-hero-copy > p:last-child {
   max-width: 680px;
@@ -2050,7 +2057,7 @@ footer {
     font-size: clamp(3.15rem, 13vw, 5rem);
     white-space: normal;
   }
-  .services-page-title {
+  .services-hero-heading > .services-page-title {
     white-space: normal;
   }
   .dashboard-hero .brand-panel {
@@ -2196,7 +2203,7 @@ footer {
   .services-hero {
     padding-block: 58px;
   }
-  .services-page-title {
+  .services-hero-heading > .services-page-title {
     font-size: clamp(2.15rem, 9vw, 3rem);
   }
   .bi-system-visual {
