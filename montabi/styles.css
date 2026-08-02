@@ -1193,6 +1193,205 @@ h2 {
   font-size: 1.25rem;
   font-weight: 400;
 }
+.fractional-service {
+  color: white;
+  background: var(--forest-900);
+}
+.fractional-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  align-items: end;
+  gap: 72px;
+  margin-bottom: 42px;
+}
+.fractional-heading h2 {
+  max-width: 780px;
+  margin-bottom: 0;
+  font-size: clamp(2.7rem, 5vw, 4.8rem);
+}
+.fractional-heading > p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+.fractional-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(290px, 0.72fr);
+  gap: 26px;
+  align-items: stretch;
+}
+.fractional-visual {
+  position: relative;
+  display: grid;
+  min-height: 560px;
+  grid-template-columns: 1fr 1.08fr 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 108px 34px 38px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    rgba(4, 34, 25, 0.5);
+  background-size: 30px 30px;
+}
+.fractional-visual::before {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(242, 168, 59, 0.22);
+  border-radius: 50%;
+  content: "";
+  transform: translate(-50%, -42%);
+  animation: system-orbit 9s linear infinite;
+}
+.fractional-visual-title,
+.fractional-visual-subtitle {
+  position: absolute;
+  right: 24px;
+  left: 24px;
+  text-align: center;
+}
+.fractional-visual-title {
+  top: 29px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+}
+.fractional-visual-subtitle {
+  top: 70px;
+  color: var(--amber);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.fractional-stack {
+  z-index: 2;
+  display: grid;
+  gap: 22px;
+}
+.fractional-stack > span {
+  position: relative;
+  display: grid;
+  gap: 5px;
+  padding: 18px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.07);
+}
+.fractional-stack > span::after {
+  position: absolute;
+  top: 50%;
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--amber), rgba(255, 255, 255, 0.15));
+  content: "";
+  animation: fractional-signal 2.6s ease-in-out infinite;
+}
+.fractional-inputs > span::after {
+  right: -35px;
+}
+.fractional-outputs > span::after {
+  left: -35px;
+  transform: rotate(180deg);
+}
+.fractional-stack strong {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+.fractional-stack small {
+  color: rgba(255, 255, 255, 0.58);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72rem;
+}
+.fractional-core {
+  z-index: 3;
+  display: grid;
+  min-height: 260px;
+  place-items: center;
+  align-content: center;
+  padding: 24px 12px;
+  border: 1px solid rgba(242, 168, 59, 0.45);
+  border-radius: 50%;
+  background: var(--forest-950);
+  box-shadow: 0 0 0 9px rgba(255, 255, 255, 0.055), 0 22px 42px rgba(0, 0, 0, 0.24);
+  text-align: center;
+}
+.fractional-core i {
+  color: var(--amber);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.4rem;
+  font-style: normal;
+  animation: delta-pulse 3.6s ease-in-out infinite;
+}
+.fractional-core strong {
+  max-width: 150px;
+  margin-top: 18px;
+  font-size: 0.78rem;
+  letter-spacing: 0.09em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.fractional-core small {
+  max-width: 150px;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.58);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.7rem;
+}
+.fractional-models {
+  display: grid;
+  gap: 12px;
+}
+.fractional-models article {
+  padding: 25px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.055);
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+.fractional-models article:hover {
+  border-color: rgba(242, 168, 59, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+}
+.fractional-models article > span {
+  color: var(--amber);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.fractional-models h3 {
+  margin: 13px 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+}
+.fractional-models p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+@keyframes fractional-signal {
+  0%, 100% { opacity: 0.35; transform: scaleX(0.55); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+.fractional-outputs > span::after {
+  animation-name: fractional-signal-output;
+}
+@keyframes fractional-signal-output {
+  0%, 100% { opacity: 0.35; transform: rotate(180deg) scaleX(0.55); }
+  50% { opacity: 1; transform: rotate(180deg) scaleX(1); }
+}
 .services-cta {
   color: white;
   background: var(--forest-950);
@@ -2206,6 +2405,18 @@ footer {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+  .fractional-heading,
+  .fractional-overview {
+    grid-template-columns: 1fr;
+  }
+  .fractional-heading {
+    align-items: start;
+    gap: 24px;
+  }
+  .fractional-visual {
+    width: min(100%, 720px);
+    justify-self: center;
+  }
   .services-cta-inner > div:last-child {
     justify-content: flex-start;
   }
@@ -2290,6 +2501,56 @@ footer {
   .system-visual-title {
     top: 22px;
     font-size: 1.35rem;
+  }
+  .fractional-heading h2 {
+    font-size: clamp(2.4rem, 12vw, 3.4rem);
+  }
+  .fractional-visual {
+    min-height: 370px;
+    gap: 9px;
+    padding: 94px 12px 22px;
+    border-radius: 20px;
+  }
+  .fractional-visual-title {
+    top: 24px;
+    font-size: 1.35rem;
+  }
+  .fractional-visual-subtitle {
+    top: 58px;
+    font-size: 0.54rem;
+    letter-spacing: 0.1em;
+  }
+  .fractional-stack {
+    gap: 14px;
+  }
+  .fractional-stack > span {
+    padding: 10px 6px;
+  }
+  .fractional-stack small {
+    display: none;
+  }
+  .fractional-stack > span::after {
+    width: 18px;
+  }
+  .fractional-inputs > span::after {
+    right: -19px;
+  }
+  .fractional-outputs > span::after {
+    left: -19px;
+  }
+  .fractional-core {
+    min-height: 150px;
+    padding: 14px 6px;
+  }
+  .fractional-core i {
+    font-size: 1.7rem;
+  }
+  .fractional-core strong {
+    margin-top: 10px;
+    font-size: 0.57rem;
+  }
+  .fractional-core small {
+    font-size: 0.58rem;
   }
   .system-stack {
     gap: 16px;
