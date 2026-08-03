@@ -77,13 +77,6 @@ img {
   font-style: normal;
   font-weight: 700;
 }
-.hero-section-break small {
-  color: var(--forest-700);
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
 .hero-grid,
 .contact-grid {
   position: absolute;
