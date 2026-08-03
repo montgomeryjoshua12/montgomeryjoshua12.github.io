@@ -513,12 +513,11 @@ h1 em {
 .dashboard-hero .hero-heading {
   display: grid;
   grid-area: heading;
-  grid-template-columns: minmax(0, auto) clamp(145px, 15vw, 210px);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   justify-content: center;
-  column-gap: clamp(26px, 4vw, 62px);
   row-gap: 0;
-  text-align: left;
+  text-align: center;
 }
 .dashboard-hero .hero-heading::after {
   width: min(100%, 1040px);
@@ -528,12 +527,6 @@ h1 em {
   margin-top: 8px;
   background: linear-gradient(90deg, transparent, rgba(20, 75, 56, 0.28) 10%, rgba(20, 75, 56, 0.28) 90%, transparent);
   content: "";
-}
-.dashboard-hero .hero-logo {
-  display: block;
-  width: 100%;
-  max-height: 142px;
-  object-fit: contain;
 }
 .dashboard-hero .hero-heading h1 {
   max-width: none;
@@ -2384,8 +2377,7 @@ footer {
     white-space: normal;
   }
   .dashboard-hero .hero-heading {
-    grid-template-columns: minmax(0, 1fr) minmax(120px, 0.28fr);
-    column-gap: clamp(18px, 4vw, 34px);
+    grid-template-columns: minmax(0, 1fr);
   }
   .services-hero-heading > .services-page-title {
     white-space: normal;
@@ -2535,12 +2527,8 @@ footer {
   .dashboard-hero .hero-heading {
     grid-template-columns: 1fr;
     justify-items: center;
-    gap: 12px;
+    gap: 0;
     text-align: center;
-  }
-  .dashboard-hero .hero-logo {
-    width: min(190px, 58vw);
-    max-height: 118px;
   }
   .dashboard-hero .hero-heading h1 {
     font-size: clamp(2.65rem, 13vw, 4rem);
