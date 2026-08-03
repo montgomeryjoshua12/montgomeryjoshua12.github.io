@@ -519,6 +519,15 @@ h1 em {
   gap: clamp(26px, 4vw, 62px);
   text-align: left;
 }
+.dashboard-hero .hero-heading::after {
+  width: min(100%, 1040px);
+  height: 1px;
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: clamp(12px, 1.6vw, 22px);
+  background: linear-gradient(90deg, transparent, rgba(20, 75, 56, 0.28) 10%, rgba(20, 75, 56, 0.28) 90%, transparent);
+  content: "";
+}
 .dashboard-hero .hero-logo {
   display: block;
   width: 100%;
