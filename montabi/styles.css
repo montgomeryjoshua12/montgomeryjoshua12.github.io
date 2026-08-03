@@ -1902,37 +1902,67 @@ footer {
   line-height: 1.05;
 }
 .services-offerings {
-  display: grid;
   grid-column: 1 / -1;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-  margin-top: 8px;
+  margin-top: 16px;
+}
+.offerings-intro {
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  align-items: end;
+  gap: clamp(36px, 6vw, 90px);
+  padding: 0 0 34px;
+}
+.offerings-intro .section-kicker {
+  margin: 0;
+  color: var(--rust);
+}
+.offerings-intro h2 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2rem, 3.1vw, 3rem);
 }
 .services-offerings article {
-  padding: clamp(26px, 3vw, 38px);
-  border: 1px solid rgba(20, 75, 56, 0.14);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.22);
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: clamp(36px, 6vw, 90px);
+  padding: clamp(30px, 4vw, 52px) 0;
+  border-top: 1px solid rgba(20, 75, 56, 0.2);
 }
-.services-offerings article > span {
+.services-offerings article:last-child {
+  border-bottom: 1px solid rgba(20, 75, 56, 0.2);
+}
+.offering-name small {
   color: var(--rust);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
-.services-offerings h2 {
-  margin: 14px 0 18px;
-  font-size: clamp(1.8rem, 2.7vw, 2.55rem);
+.offering-name h2 {
+  margin: 14px 0 24px;
+  font-size: clamp(2rem, 3vw, 2.85rem);
+  line-height: 1.02;
 }
-.services-offerings p {
+.offering-name a {
+  color: var(--forest-800);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.offering-name a span {
+  margin-left: 8px;
+  color: var(--rust);
+}
+.offering-copy p {
   margin: 0;
   color: var(--forest-700);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: clamp(1rem, 1.4vw, 1.14rem);
+  line-height: 1.58;
 }
-.services-offerings p + p {
-  margin-top: 14px;
+.offering-copy p + p {
+  margin-top: 18px;
 }
 .bi-system-visual {
   position: relative;
@@ -2300,8 +2330,10 @@ footer {
     align-items: start;
     gap: 42px;
   }
-  .services-offerings {
+  .offerings-intro,
+  .services-offerings article {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
   .bi-system-visual {
     width: min(100%, 720px);
