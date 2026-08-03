@@ -1944,19 +1944,19 @@ footer {
 .services-offerings article:last-child {
   border-bottom: 1px solid rgba(20, 75, 56, 0.2);
 }
-.offering-name small {
-  color: var(--rust);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-.offering-name h2 {
-  margin: 14px 0 24px;
-  font-size: clamp(2rem, 3vw, 2.85rem);
-  line-height: 1.02;
+.offering-name {
+  display: flex;
+  min-width: 0;
+  align-items: stretch;
+  flex-direction: column;
 }
 .offering-name a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding: 13px 2px 0;
+  border-top: 1px solid rgba(20, 75, 56, 0.16);
   color: var(--forest-800);
   font-size: 0.68rem;
   font-weight: 800;
@@ -1966,6 +1966,182 @@ footer {
 .offering-name a span {
   margin-left: 8px;
   color: var(--rust);
+}
+.offering-visual {
+  position: relative;
+  display: grid;
+  min-height: 250px;
+  align-items: center;
+  overflow: hidden;
+  padding: 30px 24px 56px;
+  background:
+    linear-gradient(rgba(20, 75, 56, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 75, 56, 0.055) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.28);
+  background-size: 24px 24px;
+  border: 1px solid rgba(20, 75, 56, 0.18);
+  border-radius: 24px;
+  box-shadow: 0 20px 44px rgba(7, 31, 24, 0.08);
+}
+.offering-visual > strong {
+  position: absolute;
+  right: 20px;
+  bottom: 17px;
+  left: 20px;
+  color: var(--forest-950);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.22rem, 1.8vw, 1.62rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-align: center;
+}
+.intelligence-visual {
+  grid-template-columns: 0.7fr 0.35fr 0.92fr 0.35fr 0.85fr;
+  gap: 8px;
+}
+.intelligence-sources {
+  display: grid;
+  gap: 7px;
+}
+.intelligence-sources i,
+.fractional-requests i,
+.fractional-results i {
+  display: grid;
+  min-height: 28px;
+  place-items: center;
+  color: var(--forest-800);
+  background: var(--cream);
+  border: 1px solid rgba(20, 75, 56, 0.16);
+  border-radius: 7px;
+  font-size: 0.48rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+.visual-route {
+  position: relative;
+  height: 1px;
+  overflow: visible;
+  background: rgba(20, 75, 56, 0.2);
+}
+.visual-route b {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: var(--amber);
+  border-radius: 50%;
+  animation: offering-data-flow 2.6s ease-in-out infinite;
+}
+.intelligence-visual .visual-route:nth-of-type(2) b {
+  animation-delay: 1.3s;
+}
+.intelligence-core,
+.fractional-analyst {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  min-height: 118px;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  color: white;
+  background: var(--forest-950);
+  border-radius: 50%;
+  box-shadow: 0 12px 28px rgba(7, 31, 24, 0.18);
+}
+.intelligence-core b,
+.fractional-analyst b {
+  color: var(--amber);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+  animation: delta-pulse 3s ease-in-out infinite;
+}
+.intelligence-core small,
+.fractional-analyst small {
+  font-size: 0.43rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+  text-align: center;
+}
+.intelligence-output {
+  display: grid;
+  gap: 8px;
+  padding: 13px 10px;
+  background: var(--cream);
+  border: 1px solid rgba(20, 75, 56, 0.16);
+  border-radius: 10px;
+}
+.intelligence-output > span {
+  display: flex;
+  min-height: 48px;
+  align-items: end;
+  justify-content: center;
+  gap: 4px;
+}
+.intelligence-output > span i {
+  width: 8px;
+  height: 38%;
+  background: var(--forest-700);
+  animation: offering-bars 2.8s ease-in-out infinite alternate;
+}
+.intelligence-output > span i:nth-child(2) { height: 62%; animation-delay: -0.7s; }
+.intelligence-output > span i:nth-child(3) { height: 48%; animation-delay: -1.4s; }
+.intelligence-output > span i:nth-child(4) { height: 82%; animation-delay: -2.1s; background: var(--amber); }
+.intelligence-output > b {
+  color: var(--forest-800);
+  font-size: 0.48rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+.fractional-offering-visual {
+  grid-template-columns: 0.78fr 1.08fr 0.72fr;
+  gap: 18px;
+}
+.fractional-requests,
+.fractional-results {
+  display: grid;
+  gap: 8px;
+}
+.fractional-results {
+  align-content: center;
+}
+.fractional-orbit {
+  position: absolute;
+  top: 36px;
+  left: 50%;
+  width: 148px;
+  height: 148px;
+  border: 1px dashed rgba(226, 154, 45, 0.75);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: system-orbit 12s linear infinite;
+}
+.fractional-orbit::after {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--amber);
+  border-radius: 50%;
+  content: "";
+}
+.fractional-analyst {
+  min-height: 132px;
+}
+@keyframes offering-data-flow {
+  0%, 15% { left: 0; opacity: 0; }
+  30% { opacity: 1; }
+  85% { left: calc(100% - 7px); opacity: 1; }
+  100% { left: calc(100% - 7px); opacity: 0; }
+}
+@keyframes offering-bars {
+  from { transform: scaleY(0.72); transform-origin: bottom; }
+  to { transform: scaleY(1); transform-origin: bottom; }
 }
 .offering-copy p {
   margin: 0;
@@ -2541,6 +2717,41 @@ footer {
   }
   .services-hero-heading > .services-page-title {
     font-size: clamp(2.15rem, 9vw, 3rem);
+  }
+  .offering-visual {
+    min-height: 230px;
+    padding: 24px 12px 58px;
+    border-radius: 18px;
+  }
+  .offering-visual > strong {
+    right: 12px;
+    bottom: 16px;
+    left: 12px;
+    font-size: 1.16rem;
+  }
+  .intelligence-visual {
+    grid-template-columns: 0.72fr 0.22fr 0.9fr 0.22fr 0.72fr;
+    gap: 5px;
+  }
+  .intelligence-core,
+  .fractional-analyst {
+    min-height: 104px;
+  }
+  .intelligence-core small,
+  .fractional-analyst small {
+    font-size: 0.38rem;
+  }
+  .intelligence-output {
+    padding: 10px 6px;
+  }
+  .fractional-offering-visual {
+    grid-template-columns: 0.75fr 1fr 0.7fr;
+    gap: 10px;
+  }
+  .fractional-orbit {
+    top: 35px;
+    width: 126px;
+    height: 126px;
   }
   .bi-system-visual {
     min-height: 0;
