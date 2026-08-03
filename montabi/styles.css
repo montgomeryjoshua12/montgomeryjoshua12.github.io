@@ -511,8 +511,19 @@ h1 em {
   padding-block: 30px 38px;
 }
 .dashboard-hero .hero-heading {
+  display: grid;
   grid-area: heading;
-  text-align: center;
+  grid-template-columns: clamp(145px, 15vw, 210px) minmax(0, auto);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(26px, 4vw, 62px);
+  text-align: left;
+}
+.dashboard-hero .hero-logo {
+  display: block;
+  width: 100%;
+  max-height: 142px;
+  object-fit: contain;
 }
 .dashboard-hero .hero-heading h1 {
   max-width: none;
@@ -1251,25 +1262,31 @@ h2 {
   transform: translate(-50%, -42%);
   animation: system-orbit 9s linear infinite;
 }
-.fractional-visual-title,
-.fractional-visual-subtitle {
+.fractional-visual-head,
+.system-visual-head {
   position: absolute;
   right: 24px;
   left: 24px;
+  z-index: 4;
+  display: grid;
+  gap: 9px;
   text-align: center;
 }
+.fractional-visual-head {
+  top: 26px;
+}
 .fractional-visual-title {
-  top: 29px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.55rem, 2.5vw, 2.2rem);
   font-weight: 400;
+  line-height: 1.08;
 }
 .fractional-visual-subtitle {
-  top: 70px;
   color: var(--amber);
   font-size: 0.67rem;
   font-weight: 800;
   letter-spacing: 0.16em;
+  line-height: 1.3;
   text-transform: uppercase;
 }
 .fractional-stack {
@@ -1986,30 +2003,23 @@ footer {
   border-radius: 30px;
   box-shadow: 0 30px 70px rgba(7, 31, 24, 0.1);
 }
-.system-visual-title {
-  position: absolute;
+.system-visual-head {
   top: 28px;
-  right: 28px;
-  left: 28px;
+}
+.system-visual-title {
   color: var(--forest-950);
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.5rem, 2.2vw, 2rem);
   font-weight: 400;
   letter-spacing: -0.025em;
-  line-height: 1;
-  text-align: center;
+  line-height: 1.08;
 }
 .system-visual-subtitle {
-  position: absolute;
-  top: 63px;
-  right: 24px;
-  left: 24px;
   color: var(--rust);
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.16em;
-  line-height: 1.2;
-  text-align: center;
+  line-height: 1.3;
   text-transform: uppercase;
 }
 .bi-system-visual::before {
@@ -2360,8 +2370,12 @@ footer {
       "image";
   }
   .dashboard-hero .hero-heading h1 {
-    font-size: clamp(3.15rem, 13vw, 5rem);
+    font-size: clamp(2.7rem, 10vw, 4.5rem);
     white-space: normal;
+  }
+  .dashboard-hero .hero-heading {
+    grid-template-columns: minmax(120px, 0.28fr) minmax(0, 1fr);
+    gap: clamp(18px, 4vw, 34px);
   }
   .services-hero-heading > .services-page-title {
     white-space: normal;
@@ -2508,6 +2522,19 @@ footer {
   .hero-content {
     min-height: calc(100svh - 76px);
   }
+  .dashboard-hero .hero-heading {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+  .dashboard-hero .hero-logo {
+    width: min(190px, 58vw);
+    max-height: 118px;
+  }
+  .dashboard-hero .hero-heading h1 {
+    font-size: clamp(2.65rem, 13vw, 4rem);
+  }
   .service-grid {
     grid-template-columns: 1fr;
   }
@@ -2525,54 +2552,64 @@ footer {
     font-size: clamp(2.15rem, 9vw, 3rem);
   }
   .bi-system-visual {
-    min-height: 355px;
-    gap: 10px;
-    padding: 92px 14px 18px;
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 118px 14px 22px;
     border-radius: 20px;
   }
-  .system-visual-title {
+  .system-visual-head,
+  .fractional-visual-head {
     top: 22px;
-    font-size: 1.35rem;
+    right: 14px;
+    left: 14px;
+    gap: 7px;
+  }
+  .system-visual-title,
+  .fractional-visual-title {
+    font-size: clamp(1.22rem, 6vw, 1.5rem);
+    line-height: 1.08;
+  }
+  .system-visual-subtitle,
+  .fractional-visual-subtitle {
+    font-size: 0.52rem;
+    letter-spacing: 0.09em;
+    line-height: 1.35;
   }
   .fractional-heading h2 {
     font-size: clamp(2.4rem, 12vw, 3.4rem);
   }
   .fractional-visual {
-    min-height: 370px;
-    gap: 9px;
-    padding: 94px 12px 22px;
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 118px 12px 22px;
     border-radius: 20px;
   }
-  .fractional-visual-title {
-    top: 24px;
-    font-size: 1.35rem;
+  .fractional-stack,
+  .system-stack {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
   }
-  .fractional-visual-subtitle {
-    top: 58px;
-    font-size: 0.54rem;
-    letter-spacing: 0.1em;
+  .fractional-stack > span,
+  .system-stack > span {
+    min-width: 0;
+    padding: 11px 5px;
+    text-align: center;
   }
-  .fractional-stack {
-    gap: 14px;
-  }
-  .fractional-stack > span {
-    padding: 10px 6px;
-  }
-  .fractional-stack small {
+  .fractional-stack small,
+  .system-stack small {
     display: none;
   }
-  .fractional-stack > span::after {
-    width: 18px;
-  }
-  .fractional-inputs > span::after {
-    right: -19px;
-  }
-  .fractional-outputs > span::after {
-    left: -19px;
+  .fractional-stack > span::after,
+  .system-stack > span > i {
+    display: none;
   }
   .fractional-core {
-    min-height: 150px;
-    padding: 14px 6px;
+    width: 100%;
+    min-height: 126px;
+    padding: 16px 10px;
+    border-radius: 22px;
   }
   .fractional-core i {
     font-size: 1.7rem;
@@ -2584,27 +2621,11 @@ footer {
   .fractional-core small {
     font-size: 0.58rem;
   }
-  .system-stack {
-    gap: 16px;
-  }
-  .system-stack > span {
-    padding: 9px 6px;
-  }
-  .system-stack small {
-    display: none;
-  }
-  .system-stack > span > i {
-    width: 20px;
-  }
-  .system-sources > span > i {
-    right: -21px;
-  }
-  .system-outputs > span > i {
-    left: -21px;
-  }
   .system-core {
-    min-height: 145px;
-    padding: 14px 8px;
+    width: 100%;
+    min-height: 126px;
+    padding: 16px 10px;
+    border-radius: 22px;
   }
   .system-core-ring {
     width: 50px;
