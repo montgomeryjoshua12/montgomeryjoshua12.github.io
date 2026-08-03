@@ -513,10 +513,11 @@ h1 em {
 .dashboard-hero .hero-heading {
   display: grid;
   grid-area: heading;
-  grid-template-columns: clamp(145px, 15vw, 210px) minmax(0, auto);
+  grid-template-columns: minmax(0, auto) clamp(145px, 15vw, 210px);
   align-items: center;
   justify-content: center;
-  gap: clamp(26px, 4vw, 62px);
+  column-gap: clamp(26px, 4vw, 62px);
+  row-gap: 0;
   text-align: left;
 }
 .dashboard-hero .hero-heading::after {
@@ -524,7 +525,7 @@ h1 em {
   height: 1px;
   grid-column: 1 / -1;
   justify-self: center;
-  margin-top: clamp(12px, 1.6vw, 22px);
+  margin-top: 8px;
   background: linear-gradient(90deg, transparent, rgba(20, 75, 56, 0.28) 10%, rgba(20, 75, 56, 0.28) 90%, transparent);
   content: "";
 }
@@ -2383,8 +2384,8 @@ footer {
     white-space: normal;
   }
   .dashboard-hero .hero-heading {
-    grid-template-columns: minmax(120px, 0.28fr) minmax(0, 1fr);
-    gap: clamp(18px, 4vw, 34px);
+    grid-template-columns: minmax(0, 1fr) minmax(120px, 0.28fr);
+    column-gap: clamp(18px, 4vw, 34px);
   }
   .services-hero-heading > .services-page-title {
     white-space: normal;
