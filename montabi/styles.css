@@ -2475,28 +2475,6 @@ footer {
   background: var(--forest-950);
   box-shadow: 0 24px 70px rgba(7, 31, 24, 0.2);
 }
-.demo-view-switcher {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-.demo-view-switcher a {
-  padding: 11px 15px;
-  color: var(--forest-800);
-  border: 1px solid rgba(20, 75, 56, 0.22);
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-.demo-view-switcher a.active {
-  color: var(--cream);
-  background: var(--forest-950);
-}
-.demo-view-switcher a span {
-  margin-left: 8px;
-  color: var(--rust);
-}
 .dashboard-frame {
   display: block;
   width: 100%;
@@ -2769,10 +2747,6 @@ footer {
   }
   .dashboard-hero .hero-heading h1 {
     font-size: clamp(2.65rem, 13vw, 4rem);
-  }
-  .demo-view-switcher {
-    align-items: stretch;
-    flex-direction: column;
   }
   .service-grid {
     grid-template-columns: 1fr;
