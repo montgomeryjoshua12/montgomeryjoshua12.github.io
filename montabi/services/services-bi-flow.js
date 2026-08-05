@@ -5,7 +5,6 @@
   const steps = [...flow.querySelectorAll(".bi-flow-step")];
   const detail = flow.querySelector(".bi-flow-detail");
   const fields = {
-    stage: flow.querySelector("[data-bi-stage]"),
     phase: flow.querySelector("[data-bi-phase]"),
     title: flow.querySelector("[data-bi-title]"),
     description: flow.querySelector("[data-bi-description]"),
