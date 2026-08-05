@@ -3095,6 +3095,14 @@ body::before {
 }
 .logo-link,
 .nav-logo { width: 116px; height: 68px; }
+.logo-link {
+  border: 0;
+  background: transparent;
+}
+.nav-logo {
+  background: transparent;
+  mix-blend-mode: multiply;
+}
 .nav-links {
   gap: 8px;
   padding: 5px;
