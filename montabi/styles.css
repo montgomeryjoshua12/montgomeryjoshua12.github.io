@@ -3306,6 +3306,9 @@ body::before {
     linear-gradient(135deg, #082c22, #0b3b2e);
   box-shadow: 0 24px 58px rgba(4, 35, 27, 0.17);
 }
+.services-cta-inner {
+  padding: clamp(30px, 4vw, 48px);
+}
 .home-conversion .section-kicker,
 .services-cta-inner .section-kicker {
   color: var(--tech-gold);
@@ -3446,6 +3449,7 @@ footer .wordmark { color: #fffaf2; }
   .about-card { padding: 26px; }
   .contact-panel { border-radius: 22px; }
   .dashboard-frame-shell { width: calc(100% - 16px); border-radius: 18px; padding: 5px; }
+  .services-cta-inner { padding: 26px 22px; }
   .footer-inner { gap: 10px; }
 }
 
