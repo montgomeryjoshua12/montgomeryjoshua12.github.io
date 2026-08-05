@@ -3292,10 +3292,23 @@ body::before {
 }
 .home-conversion,
 .services-cta-inner {
-  border: 1px solid rgba(245, 178, 63, 0.25);
+  border: 1px solid rgba(113, 210, 159, 0.18);
   border-radius: var(--tech-radius);
-  background: linear-gradient(115deg, #f3a735, #ed7828);
-  box-shadow: 0 28px 65px rgba(238, 122, 40, 0.2);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(113, 210, 159, 0.1), transparent 22rem),
+    linear-gradient(135deg, #082c22, #0b3b2e);
+  box-shadow: 0 24px 58px rgba(4, 35, 27, 0.17);
+}
+.home-conversion .section-kicker,
+.services-cta-inner .section-kicker {
+  color: var(--tech-gold);
+}
+.home-conversion .button-primary,
+.services-cta-inner .button-primary {
+  box-shadow: 0 10px 24px rgba(245, 178, 63, 0.16);
+}
+.offering-visual > strong {
+  color: var(--tech-gold);
 }
 
 .content-page,
