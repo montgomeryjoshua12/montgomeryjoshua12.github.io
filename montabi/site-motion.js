@@ -1,4 +1,33 @@
 (() => {
+  document.querySelectorAll(".nav").forEach((nav) => {
+    const links = nav.querySelector(".nav-links");
+    if (!links || nav.querySelector(".nav-toggle")) return;
+
+    const toggle = document.createElement("button");
+    toggle.className = "nav-toggle";
+    toggle.type = "button";
+    toggle.setAttribute("aria-label", "Open navigation");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.innerHTML = "<span></span><span></span>";
+    nav.insertBefore(toggle, links);
+
+    const close = () => {
+      nav.classList.remove("nav-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open navigation");
+    };
+
+    toggle.addEventListener("click", () => {
+      const open = nav.classList.toggle("nav-open");
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    });
+    links.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) close();
+    });
+  });
+
   const items = [...document.querySelectorAll("[data-tech-reveal]")];
   if (!items.length) return;
 
