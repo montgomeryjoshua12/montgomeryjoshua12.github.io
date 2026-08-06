@@ -3505,7 +3505,7 @@ footer .wordmark { color: #fffaf2; }
 .library-filters button.is-active { color: #fffaf2; background: var(--tech-dark); }
 .library-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 .library-card {
