@@ -8,7 +8,7 @@
       content="Montabi turns financial and operational data into trusted dashboards, sharper analysis, and practical decisions."
     />
     <title>Montabi | Augmented Business Intelligence</title>
-    <link rel="stylesheet" href="./styles.css?v=intelligence-library-2" />
+    <link rel="stylesheet" href="./styles.css?v=intelligence-library-3" />
   </head>
   <body>
     <main class="site-fade static-site">
@@ -273,15 +273,7 @@
             <p>Explore repeatable Montabi solutions designed around the questions owners and operators need answered consistently.</p>
           </header>
 
-          <div class="library-filters" role="group" aria-label="Filter intelligence products" data-tech-reveal>
-            <button class="is-active" type="button" data-library-filter="all" aria-pressed="true">All solutions</button>
-            <button type="button" data-library-filter="finance" aria-pressed="false">Cash &amp; finance</button>
-            <button type="button" data-library-filter="growth" aria-pressed="false">Growth</button>
-            <button type="button" data-library-filter="operations" aria-pressed="false">Operations</button>
-            <button type="button" data-library-filter="reporting" aria-pressed="false">Reporting</button>
-          </div>
-
-          <div class="library-grid" aria-live="polite">
+          <div class="library-grid">
             <article class="library-card" data-library-card data-category="reporting finance" data-tech-reveal>
               <div class="library-preview preview-executive" aria-hidden="true">
                 <span class="preview-topline"></span><i></i><i></i><i></i><b></b><b></b>
@@ -301,8 +293,20 @@
               <div class="library-card-copy">
                 <span>Montabi Working Capital Command Center</span>
                 <h3>Working Capital &amp; Expense Management</h3>
-                <p>Receivables, payables, inventory, expenses, cash conversion, and the 13-week cash outlook connected in one operating view.</p>
+                <p>Receivables, payables, inventory, expenses, cash conversion, and liquidity risk connected in one operating view.</p>
                 <a href="./demo/">Explore the command center <b>↗</b></a>
+              </div>
+            </article>
+
+            <article class="library-card" data-library-card data-category="finance operations" data-tech-reveal>
+              <div class="library-preview preview-cash" aria-hidden="true">
+                <span></span><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><b></b>
+              </div>
+              <div class="library-card-copy">
+                <span>Montabi Cash Outlook</span>
+                <h3>Cash Forecasting &amp; Scenario Planning</h3>
+                <p>A rolling 13-week view of expected receipts, payments, available cash, and scenarios that could change the outlook.</p>
+                <a href="./services/">Explore the capability <b>→</b></a>
               </div>
             </article>
 
@@ -349,8 +353,8 @@
         <div class="shell integration-proof-inner">
           <header class="integration-heading" data-tech-reveal>
             <p class="section-kicker">Built around your environment</p>
-            <h2 id="integrations-title">Connect the systems you use. Deliver intelligence where your team works.</h2>
-            <p>Montabi works with your existing architecture, applies controlled business logic, and delivers a continuously refreshed source of truth.</p>
+            <h2 id="integrations-title">Connect the systems you use. Deliver one custom intelligence application.</h2>
+            <p>Montabi applies controlled business logic and delivers a continuously refreshed React application with dashboards, insights, and exportable data.</p>
           </header>
 
           <div class="integration-map" data-tech-reveal>
@@ -373,12 +377,14 @@
             </div>
             <div class="integration-column integration-delivery">
               <span class="integration-label">Delivery</span>
-              <div><strong>Power BI</strong><small>Dashboards</small></div>
-              <div><strong>Tableau</strong><small>Visual analytics</small></div>
-              <div><strong>Excel</strong><small>Flexible analysis</small></div>
+              <div class="integration-primary"><strong>Custom React App</strong><small>Core intelligence product</small></div>
+              <div><strong>Dashboards + Insights</strong><small>Connected decision experience</small></div>
+              <div><strong>Client Data Exports</strong><small>CSV + Excel-ready data</small></div>
+              <div><strong>Power BI</strong><small>Optional delivery</small></div>
+              <div><strong>Tableau</strong><small>Optional delivery</small></div>
             </div>
           </div>
-          <p class="integration-note" data-tech-reveal>Platform-agnostic by design. Your infrastructure stays useful; the intelligence layer becomes connected, governed, and dependable.</p>
+          <p class="integration-note" data-tech-reveal>The core product is a custom-built application similar to the Montabi demo. Power BI and Tableau remain available when they better fit the client environment, and final data remains exportable.</p>
         </div>
       </section>
 
@@ -440,7 +446,6 @@
     <script src="./site-motion.js?v=2"></script>
     <script src="./hero-intelligence.js?v=2"></script>
     <script src="./approach-interactive.js?v=2"></script>
-    <script src="./intelligence-library.js?v=1"></script>
     <script src="./review.js?v=2"></script>
   </body>
 </html>
