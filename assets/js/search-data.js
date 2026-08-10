@@ -16,7 +16,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "projects-nyc-yellow-taxi-tipping-project",
+        },{id: "projects-ames-housing-regression-analysis",
+          title: 'Ames Housing Regression Analysis',
+          description: "R, Shiny, linear regression, model selection, and Kaggle project for MSDS 6371.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/ames-housing-regression/";
+            },},{id: "projects-nyc-yellow-taxi-tipping-project",
           title: 'NYC Yellow Taxi Tipping Project',
           description: "R, Shiny, linear regression, and RAG project for DS 6306.",
           section: "Projects",handler: () => {
