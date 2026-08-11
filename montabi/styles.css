@@ -3470,10 +3470,14 @@ footer .wordmark { color: #fffaf2; }
 .integration-heading h2 { grid-area: title; }
 .integration-heading > p:last-of-type { grid-area: copy; max-width: 720px; margin-top: 24px; }
 .integration-logo {
+  box-sizing: border-box;
   grid-area: logo;
   width: min(100%, 560px);
   height: auto;
+  padding: 20px;
   justify-self: center;
+  border: 1px solid rgba(245, 178, 63, 0.5);
+  border-radius: 24px;
   filter: none;
 }
 .library-heading h2,
