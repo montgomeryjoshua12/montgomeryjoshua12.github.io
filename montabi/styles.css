@@ -3459,7 +3459,7 @@ footer .wordmark { color: #fffaf2; }
   margin-bottom: 38px;
 }
 .integration-heading {
-  grid-template-columns: minmax(0, 0.98fr) minmax(420px, 1.02fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(460px, 1.15fr);
   grid-template-areas:
     "kicker logo"
     "title logo"
@@ -3473,7 +3473,7 @@ footer .wordmark { color: #fffaf2; }
 .integration-hero-actions { grid-area: actions; margin-top: 4px; }
 .integration-logo {
   grid-area: logo;
-  width: min(112%, 680px);
+  width: min(110%, 760px);
   height: auto;
   justify-self: center;
   border: 0;
@@ -3802,7 +3802,7 @@ footer .wordmark { color: #fffaf2; }
 @media (max-width: 680px) {
   .library-heading,.integration-heading { grid-template-columns:1fr; gap:20px; }
   .integration-heading { grid-template-areas:"kicker" "title" "copy" "actions" "logo"; }
-  .integration-logo { width:min(96vw,560px); margin-top:10px; }
+  .integration-logo { width:min(98vw,620px); margin-top:10px; }
   .library-heading h2,.integration-heading h2 { font-size:clamp(2.55rem,12vw,4rem); }
   .library-grid { grid-template-columns:1fr; }
   .library-card { min-height:0; }
