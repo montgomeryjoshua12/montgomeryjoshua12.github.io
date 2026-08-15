@@ -3660,6 +3660,46 @@ footer .wordmark { color: #fffaf2; }
     radial-gradient(circle at 50% 42%, rgba(113, 210, 159, 0.13), transparent 26rem),
     linear-gradient(145deg, #05271e, #0a392c);
 }
+.integration-home-lead {
+  position: relative;
+  min-height: calc(100vh - 116px);
+  margin-top: 0;
+  padding: clamp(52px, 7vw, 92px) 0 clamp(48px, 6vw, 78px);
+}
+.integration-home-lead .integration-proof-inner {
+  display: grid;
+  gap: clamp(30px, 4vw, 52px);
+}
+.integration-hero-title {
+  position: relative;
+  z-index: 2;
+  padding-bottom: clamp(22px, 3vw, 34px);
+  border-bottom: 1px solid rgba(245, 178, 63, 0.34);
+  text-align: center;
+}
+.integration-hero-title h1 {
+  max-width: 1240px;
+  margin: 0 auto;
+  color: #fffaf2;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.3rem, 6.6vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+.integration-hero-title em {
+  color: var(--orange);
+  font-weight: 400;
+}
+.integration-home-lead .integration-heading { margin-bottom: 0; }
+.integration-home-lead .integration-map { margin-top: 0; }
+.integration-home-lead .integration-logo {
+  background: #fbf2e3;
+  object-fit: contain;
+}
+.hero > .hero-content {
+  padding-top: clamp(64px, 8vw, 112px);
+}
 .integration-proof::before { position: absolute; inset: 0; background-image: linear-gradient(rgba(113,210,159,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(113,210,159,.045) 1px,transparent 1px); background-size: 48px 48px; content:""; }
 .integration-proof-inner { position: relative; z-index: 1; }
 .integration-heading h2 { color: #fffaf2; }
@@ -3763,6 +3803,8 @@ footer .wordmark { color: #fffaf2; }
   .integration-map { grid-template-columns:1fr; padding:20px; }
   .integration-sources,.integration-data,.integration-core,.integration-delivery { grid-column:1; grid-row:auto; }
   .integration-core { width:100%; min-height:190px; }
+  .integration-home-lead { min-height: auto; padding-top: 44px; }
+  .integration-hero-title h1 { font-size: clamp(2.75rem, 13vw, 4.8rem); }
 }
 
 @media (max-width: 760px) {
