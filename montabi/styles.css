@@ -3682,13 +3682,17 @@ footer .wordmark { color: #fffaf2; }
   margin: 0 auto;
   color: #fffaf2;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.3rem, 6.6vw, 7rem);
+  font-size: clamp(3.1rem, 4.9vw, 5.8rem);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 0.94;
+  white-space: nowrap;
 }
 .integration-hero-title em {
-  color: var(--orange);
+  background: linear-gradient(120deg, var(--rust), var(--tech-orange), var(--tech-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-weight: 400;
 }
 .integration-home-lead .integration-heading { margin-bottom: 0; }
@@ -3804,7 +3808,7 @@ footer .wordmark { color: #fffaf2; }
   .integration-sources,.integration-data,.integration-core,.integration-delivery { grid-column:1; grid-row:auto; }
   .integration-core { width:100%; min-height:190px; }
   .integration-home-lead { min-height: auto; padding-top: 44px; }
-  .integration-hero-title h1 { font-size: clamp(2.75rem, 13vw, 4.8rem); }
+  .integration-hero-title h1 { font-size: clamp(2.75rem, 13vw, 4.8rem); white-space: normal; }
 }
 
 @media (max-width: 760px) {
