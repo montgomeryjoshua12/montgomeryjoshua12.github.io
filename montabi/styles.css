@@ -3678,20 +3678,22 @@ footer .wordmark { color: #fffaf2; }
   text-align: center;
 }
 .integration-hero-title h1 {
-  /* Keep the full promise visible at every viewport width. The previous
-     single-line rule made the title wider than the shell and the hero hid it. */
-  max-width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
   color: #fffaf2;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.7rem, 4.25vw, 5.25rem);
+  font-size: clamp(2.65rem, 4vw, 4.25rem);
   font-weight: 400;
   letter-spacing: -0.055em;
-  line-height: 0.98;
-  text-wrap: balance;
-  overflow-wrap: anywhere;
+  line-height: 1;
+  text-align: center;
+}
+.integration-hero-title h1 > span,
+.integration-hero-title h1 > em {
+  display: block;
 }
 .integration-hero-title em {
+  margin-top: 0.08em;
   background: linear-gradient(120deg, var(--rust), var(--tech-orange), var(--tech-gold));
   -webkit-background-clip: text;
   background-clip: text;
